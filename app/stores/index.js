@@ -1,7 +1,7 @@
-import Portfolio from './portfolio-store'
+import PortfolioStore from './portfolio-store'
 import Coin from './coin-store'
 
 export {
-    Portfolio,
+    PortfolioStore,
     Coin
 }

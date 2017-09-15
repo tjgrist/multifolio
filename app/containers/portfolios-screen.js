@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, FlatList } from 'react-native'
 import Button from 'react-native-button'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import * as stores from '../stores'
+import {PortfolioStore, Coin} from '../stores'
 
 import ApplicationStyles from '../styles'
 
-export default class PortfoliosScreen extends Component {
+export default class PortfolioStoresScreen extends Component {
     static navigationOptions = {
         tabBarVisible: true,
         title: 'Portfolios',
@@ -17,7 +17,7 @@ export default class PortfoliosScreen extends Component {
 
     constructor (props) {
         super(props)
-        this.dataSrc = stores.Portfolio.get()
+        this.dataSrc = PortfolioStore.get()
     }
 
     componentDidMount() { 
