@@ -1,3 +1,5 @@
+import {realm} from './index'
+
 class Coin {
     static get() { return realm.objects(Portfolio.schema.name) }
     static schema = {
@@ -15,4 +17,21 @@ class Coin {
     }
 }
 
-export default Coin;
+class CoinStore {
+
+    static get () { return realm.objects('Coin') }
+
+    static create (coin) {
+        if (realm.objects('Coin').filtered("name = '" + coin.name + "'").length) return;
+        realm.write(() => {
+            realm.create('Coin', coin)
+        })
+    }
+
+    getValue () {
+        //compute coin values
+    }
+    
+}
+
+export {Coin, CoinStore};

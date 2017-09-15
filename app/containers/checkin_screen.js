@@ -19,11 +19,8 @@ export default class CheckinScreen extends Component {
     return (
       <View style={[styles.container, ApplicationStyles.container]}>
         <Text style={styles.welcome} >
-          CheckinScreen
+          Login 
         </Text>
-        <Button onPress={()=>this.props.navigation.navigate('ThirdScreen')} >
-          To ThirdScreen
-        </Button>
       </View>
     )
   }

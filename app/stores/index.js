@@ -1,7 +1,12 @@
-import PortfolioStore from './portfolio-store'
-import Coin from './coin-store'
+import Realm from 'realm'
+import {PortfolioStore, Portfolio} from './portfolio-store'
+import {CoinStore, Coin} from './coin-store'
+
+// Create Realm DB
+const realm = new Realm({schema: [Coin, Portfolio]});
 
 export {
+    realm,
     PortfolioStore,
-    Coin
+    CoinStore
 }

@@ -1,18 +1,6 @@
-import Realm from 'realm'
-import Coin from './coin-store'
+import {realm} from './index'
 
 class Portfolio {
-
-    static get () { return realm.objects('Portfolio') }
-
-    static getValue () {
-        //sum coin array 
-    }
-
-    static create (Portfolio) {
-        
-    }
-
     static schema = {
         name: 'Portfolio',
         primaryKey: 'name',
@@ -36,13 +24,16 @@ class PortfolioStore {
             portfolio.coins = portfolio.coins || []
             realm.create('Portfolio', portfolio)
         })
+        //compute value
+    }
+
+    getValue () {
+        //compute coin values
     }
     
 }
-// Create Realm DB
-const realm = new Realm({schema: [Coin, Portfolio]});
 
-export default PortfolioStore
+export { PortfolioStore, Portfolio }
 
 
 

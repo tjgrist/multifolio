@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, FlatList } from 'react-native'
 import Button from 'react-native-button'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import {PortfolioStore, Coin} from '../stores'
+import {PortfolioStore, CoinStore} from '../stores'
 
 import ApplicationStyles from '../styles'
 
@@ -11,7 +11,7 @@ export default class PortfolioStoresScreen extends Component {
         tabBarVisible: true,
         title: 'Portfolios',
         tabBarIcon: ({tintColor}) => (
-        <Icon name='dashboard' color={tintColor} size={24}/>
+        <Icon name='rocket' color={tintColor} size={24}/>
         )
     };
 
