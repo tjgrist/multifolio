@@ -4,7 +4,6 @@ import Button from 'react-native-button'
 import { observer } from 'mobx-react/native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import ApplicationStyles from '../styles'
-
 import counterStore from '../stores/counter_store'
 
 @observer
@@ -21,7 +20,6 @@ export default class WelcomeScreen extends Component {
       <View style={[styles.container, ApplicationStyles.container]}>
         <Icon style={styles.welcome} name="home" size={30} />
         <Text style={styles.text} >
-          Welcome to Mobx React Native Template
         </Text>
         <Text style={styles.text} >
           Now counter is <Text style={styles.textRed}>{counterStore.counter}</Text>

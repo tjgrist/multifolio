@@ -48,6 +48,9 @@
 		D47F628DE0B345C1BA5BB7F8 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 957BB17453114E108FF8782A /* Octicons.ttf */; };
 		ADB1FAA8F8E54ABC95E9100D /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7BAA87169A05435A9578A249 /* SimpleLineIcons.ttf */; };
 		DD5170D90AF942AF96041942 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5009C0641840447EB774828F /* Zocial.ttf */; };
+		0E6477DE3ACA4CD4B7E27684 /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B776B4B82F2E440C83833B19 /* libRealmReact.a */; };
+		600ADBEDF17F44E58640A4E0 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 789547FDDCC14D6BA73B80C0 /* libc++.tbd */; };
+		B27DE1E06765402AAF1D8F25 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 511D7DD540E8410CA3485526 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -289,6 +292,10 @@
 		957BB17453114E108FF8782A /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		7BAA87169A05435A9578A249 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		5009C0641840447EB774828F /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		30E98EAE70124B74BE3A2A36 /* RealmReact.xcodeproj */ = {isa = PBXFileReference; name = "RealmReact.xcodeproj"; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		B776B4B82F2E440C83833B19 /* libRealmReact.a */ = {isa = PBXFileReference; name = "libRealmReact.a"; path = "libRealmReact.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		789547FDDCC14D6BA73B80C0 /* libc++.tbd */ = {isa = PBXFileReference; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
+		511D7DD540E8410CA3485526 /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,6 +326,9 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				A4D59049CC5C461C8406541A /* libRCTSmartKeyboard.a in Frameworks */,
 				D5BBD8D8B5544216B5C0412C /* libRNVectorIcons.a in Frameworks */,
+				0E6477DE3ACA4CD4B7E27684 /* libRealmReact.a in Frameworks */,
+				600ADBEDF17F44E58640A4E0 /* libc++.tbd in Frameworks */,
+				B27DE1E06765402AAF1D8F25 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,6 +499,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				0664AC4CF922431280BC6992 /* RCTSmartKeyboard.xcodeproj */,
 				D2C1574A11E945008F8089A8 /* RNVectorIcons.xcodeproj */,
+				30E98EAE70124B74BE3A2A36 /* RealmReact.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -510,6 +521,7 @@
 				00E356EF1AD99517003FC87E /* aoliTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				0F405C4024D742A2BE7924F1 /* Resources */,
+				F34426CF7EAC478B8AB09115 /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -550,6 +562,16 @@
 				5009C0641840447EB774828F /* Zocial.ttf */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+			path = "";
+		};
+		F34426CF7EAC478B8AB09115 /* Frameworks */ = {
+			isa = "PBXGroup";
+			children = (
+				789547FDDCC14D6BA73B80C0 /* libc++.tbd */,
+				511D7DD540E8410CA3485526 /* libz.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 			path = "";
 		};
@@ -1067,11 +1089,13 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-smart-keyboard/ios/RCTSmartKeyboard/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 			};
 			name = Debug;
@@ -1094,11 +1118,13 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-smart-keyboard/ios/RCTSmartKeyboard/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 			};
 			name = Release;
@@ -1122,6 +1148,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-smart-keyboard/ios/RCTSmartKeyboard/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 			};
 			name = Debug;
@@ -1144,6 +1171,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-smart-keyboard/ios/RCTSmartKeyboard/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 			};
 			name = Release;
@@ -1175,11 +1203,13 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-smart-keyboard/ios/RCTSmartKeyboard/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 			};
 			name = Debug;
@@ -1211,11 +1241,13 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-smart-keyboard/ios/RCTSmartKeyboard/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 			};
 			name = Release;
@@ -1242,6 +1274,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1266,6 +1299,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
