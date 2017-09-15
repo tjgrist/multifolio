@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { Text, View, FlatList } from 'react-native';
 import { PortfolioStore } from '../../stores'
 import PortfolioComponent from './portfolio-component'
+import { observer, inject } from 'mobx-react/native'
 
+
+@inject('store') @observer
 class PortfolioListComponent extends Component {
 
     constructor (props) {
         super(props)
-        this.dataSrc = PortfolioStore.get()
+        const {store} = this.props
+        this.dataSrc = store.get()
     }
 
     _renderItem = ({item}) => (
@@ -22,11 +26,13 @@ class PortfolioListComponent extends Component {
         
     }
 
+    _keyExtractor = (item, index) => item.name
+
   render() {
     return (
         <FlatList
             data={this.dataSrc}
-            keyExtractor={(item, index) => item.name}
+            keyExtractor={this._keyExtractor}
             renderItem={this._renderItem}
         />
     );

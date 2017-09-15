@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, FlatList } from 'react-native'
 import Button from 'react-native-button'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {PortfolioStore, CoinStore} from '../stores'
+import NewPortfolioComponent from '../components/portfolio/new-portfolio-component'
 
 import ApplicationStyles from '../styles'
 
@@ -23,9 +24,7 @@ export default class NewPortfolioScreen extends Component {
 
 render() {
     return (
-      <View style={[styles.container, ApplicationStyles.container]}>
-        <Button style={ApplicationStyles.button} onPress={ ()=> null }>Save</Button>
-      </View>
+      <NewPortfolioComponent/>
     )
   }
 }

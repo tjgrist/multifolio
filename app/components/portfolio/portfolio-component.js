@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, TouchableHighlight } from 'react-native';
 
 class PortfolioComponent extends Component {
   render() {
     return (
-      <Text>{this.props.name}</Text>
+      <View>
+        <TouchableHighlight>
+          <Text>{this.props.name}</Text>
+        </TouchableHighlight>
+      </View>
     );
   }
 }
