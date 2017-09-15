@@ -6,18 +6,15 @@ import {PortfolioStore, CoinStore} from '../stores'
 
 import ApplicationStyles from '../styles'
 
-export default class PortfoliosScreen extends Component {
+export default class NewPortfolioScreen extends Component {
     static navigationOptions = {
-        tabBarVisible: true,
-        title: 'Portfolios',
-        tabBarIcon: ({tintColor}) => (
-        <Icon name='rocket' color={tintColor} size={24}/>
-        )
+        tabBarVisible: false,
+        title: 'New Portfolio',
     };
 
     constructor (props) {
         super(props)
-        this.dataSrc = PortfolioStore.get()
+        
     }
 
     componentDidMount() { 
@@ -27,14 +24,7 @@ export default class PortfoliosScreen extends Component {
 render() {
     return (
       <View style={[styles.container, ApplicationStyles.container]}>
-        <FlatList
-            data={this.dataSrc}
-            renderItem={({item}) => <Text>{item.name}</Text>}
-            keyExtractor={(item, index) => index}
-            />
-             <Button style={ApplicationStyles.button} onPress={ ()=> this.props.navigation.navigate('NewPortfolioScreen') }>
-              New Portfolio
-            </Button>
+        <Button style={ApplicationStyles.button} onPress={ ()=> null }>Save</Button>
       </View>
     )
   }

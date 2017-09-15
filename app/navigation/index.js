@@ -5,6 +5,7 @@ import SecondScreen from '../containers/second_screen'
 import CounterScreen from '../containers/counter_screen'
 import CheckinScreen from '../containers/checkin_screen'
 import PorfoliosScreen from '../containers/portfolios-screen'
+import NewPortfolioScreen from '../containers/new-portfolio-screen'
 
 const WelcomeTab = StackNavigator({
   WelcomeScreen: { screen: WelcomeScreen },
@@ -17,7 +18,8 @@ const CheckinTab = StackNavigator({
 })
 
 const PorfoliosTab = StackNavigator({
-  PorfoliosScreen: { screen: PorfoliosScreen }
+  PorfoliosScreen: { screen: PorfoliosScreen },
+  NewPortfolioScreen: { screen: NewPortfolioScreen }
 })
 
 const Navigation = TabNavigator({
