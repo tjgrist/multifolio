@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, FlatList } from 'react-native'
 import Button from 'react-native-button'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {PortfolioStore, CoinStore} from '../stores'
+import PortfolioListComponent from '../components/portfolio/portfolio-list-component'
 
 import ApplicationStyles from '../styles'
 
@@ -15,11 +16,6 @@ export default class PortfoliosScreen extends Component {
         )
     };
 
-    constructor (props) {
-        super(props)
-        this.dataSrc = PortfolioStore.get()
-    }
-
     componentDidMount() { 
 
     }
@@ -27,11 +23,7 @@ export default class PortfoliosScreen extends Component {
 render() {
     return (
       <View style={[styles.container, ApplicationStyles.container]}>
-        <FlatList
-            data={this.dataSrc}
-            renderItem={({item}) => <Text>{item.name}</Text>}
-            keyExtractor={(item, index) => index}
-            />
+      <PortfolioListComponent store={PortfolioStore} />
              <Button style={ApplicationStyles.button} onPress={ ()=> this.props.navigation.navigate('NewPortfolioScreen') }>
               New Portfolio
             </Button>
