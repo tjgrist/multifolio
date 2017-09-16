@@ -17,18 +17,19 @@ export default class PortfoliosScreen extends Component {
         )
     };
 
-    componentDidMount() { 
-
-    }
+ 
 
 render() {
     return (
       <Provider store={PortfolioStore}>
         <View style={[styles.container, ApplicationStyles.container]}>
-        <PortfolioListComponent />
-              <Button style={ApplicationStyles.button} onPress={ ()=> this.props.navigation.navigate('NewPortfolioScreen') }>
-                New Portfolio
-              </Button>
+        <PortfolioListComponent navigation={this.props.navigation}/>
+        <Button style={ApplicationStyles.button} onPress={ ()=> this.props.navigation.navigate('NewPortfolioScreen') }>
+          New Portfolio
+        </Button>
+        <Button style={ApplicationStyles.button} onPress={ ()=> this.props.navigation.navigate('PortfolioDetailScreen') }>
+          details 
+        </Button>
         </View>
       </Provider>
     )
