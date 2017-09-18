@@ -20,7 +20,7 @@ const PortfoliosTab = StackNavigator({
   NewPortfolioScreen: { screen: NewPortfolioScreen },
   PortfolioDetailScreen: { screen: PortfolioDetailScreen},
   CoinDetailScreen: { screen: CoinDetailScreen }
-})
+}, { mode: 'modal' })
 
 const Navigation = TabNavigator({
   Portfolios: { screen: PortfoliosTab },
