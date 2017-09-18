@@ -25,7 +25,7 @@ export default class WelcomeScreen extends Component {
           Now counter is <Text style={styles.textRed}>{counterStore.counter}</Text>
         </Text>
         <Text style={styles.text} >
-          Now remote counter is {counterStore.remoteCounter}
+          Now remote counter is {counterStore.remoteCounter.amount}
         </Text>
         <Button style={ApplicationStyles.button} onPress={ ()=> counterStore.getFromRemote() }>
           Click to get api data

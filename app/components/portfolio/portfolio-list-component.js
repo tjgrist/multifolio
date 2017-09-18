@@ -2,20 +2,17 @@ import React, { Component } from 'react';
 import {  Text, View, FlatList, TouchableHighlight } from 'react-native';
 import Button from 'react-native-button'
 import { PortfolioStore } from '../../stores'
-import PortfolioComponent from './portfolio-component'
 import PortfolioDetailComponent from './portfolio-detail-component'
 import { observer, inject } from 'mobx-react/native'
 
 @inject('store') @observer 
 class PortfolioListComponent extends Component {
     
-    _renderItem = ({item}) => {
-        return (
+    _renderItem = ({item}) => (
         <Button onPress={() => this._onPressItem({item}) }>
             {item.name}
         </Button>
-
-    )}
+    )
 
     _onPressItem = ({item}) => {
         const { navigate } = this.props.navigation;

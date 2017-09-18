@@ -16,7 +16,7 @@ export default class CoinDetailComponent extends Component {
         console.log(coin)
         return (
             <View>
-                <Text>{coin.name}</Text>
+                <Text>{coin.name} | {coin.symbol} | {coin.holdings} | </Text>
             </View>
         );
     }
