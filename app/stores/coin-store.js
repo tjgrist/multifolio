@@ -4,7 +4,6 @@ class Coin {
     static get() { return realm.objects(Portfolio.schema.name) }
     static schema = {
         name: 'Coin',
-        primaryKey: 'name',
         properties: {
             name: {type: 'string'},
             symbol: {type: 'string'},

@@ -27,9 +27,6 @@ render() {
         <Button style={ApplicationStyles.button} onPress={ ()=> this.props.navigation.navigate('NewPortfolioScreen') }>
           New Portfolio
         </Button>
-        <Button style={ApplicationStyles.button} onPress={ ()=> this.props.navigation.navigate('PortfolioDetailScreen') }>
-          details 
-        </Button>
         </View>
       </Provider>
     )

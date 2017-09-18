@@ -19,7 +19,6 @@ class PortfolioListComponent extends Component {
     )}
 
     _onPressItem = ({item}) => {
-        console.log(item)
         const { navigate } = this.props.navigation;
         navigate('PortfolioDetailScreen', {portfolio: item})
     }

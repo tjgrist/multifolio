@@ -5,7 +5,6 @@ class Portfolio {
         name: 'Portfolio',
         primaryKey: 'name',
         properties: {
-            id: {type: 'string'},
             name: {type: 'string'},
             value: {type: 'double', optional: true},
             profit: {type: 'double', optional: true},
