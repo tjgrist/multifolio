@@ -10,7 +10,6 @@ import { observer, inject } from 'mobx-react/native'
 class PortfolioListComponent extends Component {
     
     _renderItem = ({item}) => {
-        console.log(item)
         return (
         <Button onPress={() => this._onPressItem({item}) }>
             {item.name}

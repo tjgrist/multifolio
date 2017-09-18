@@ -34,6 +34,9 @@ export default class WelcomeScreen extends Component {
         <Button style={ApplicationStyles.button} onPress={ ()=> this.props.navigation.navigate('CounterScreen') }>
           Click to counter screen
         </Button>
+        <Button style={ApplicationStyles.button} onPress={ ()=> this.props.navigation.navigate('CheckinScreen') }>
+          login
+        </Button>
       </View>
     )
   }

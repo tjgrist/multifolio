@@ -3,19 +3,19 @@ import { Text, View, StyleSheet, FlatList } from 'react-native'
 import Button from 'react-native-button'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {PortfolioStore, CoinStore} from '../stores'
-import PortfolioDetailComponent from '../components/portfolio/portfolio-detail-component'
+import CoinDetailComponent from '../components/coin/coin-detail-component'
 
 import ApplicationStyles from '../styles'
 
-export default class PortfolioDetailScreen extends Component {
+export default class CoinDetailScreen extends Component {
     static navigationOptions = {
         tabBarVisible: false,
-        title: 'Portfolio Detail',
+        title: 'Coin Detail',
     };
 
     render() {
         return (
-        <PortfolioDetailComponent navigation={this.props.navigation}/>
+        <CoinDetailComponent navigation={this.props.navigation}/>
         )
     }
 }
