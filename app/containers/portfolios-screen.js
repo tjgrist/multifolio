@@ -13,7 +13,7 @@ export default class PortfoliosScreen extends Component {
         tabBarVisible: true,
         title: 'Portfolios',
         tabBarIcon: ({tintColor}) => (
-        <Icon name='rocket' color={tintColor} size={24}/>
+          <Icon name='rocket' color={tintColor} size={24}/>
         )
     };
 

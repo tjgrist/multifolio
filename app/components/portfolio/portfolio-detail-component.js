@@ -8,9 +8,12 @@ import Button from 'react-native-button'
 class PortfolioDetailComponent extends Component {
 
     _renderItem = ({item}) => (
-        <Button onPress={() => this._onPressItem({item}) }>
+        <View>
+            <Button onPress={() => this._onPressItem({item}) }>
             {item.symbol}
-        </Button>
+            </Button>
+            <Text>{item.holdings}</Text>
+        </View>
     )
 
     _onPressItem = ({item}) => {

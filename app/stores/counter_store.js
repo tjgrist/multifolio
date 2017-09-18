@@ -24,7 +24,6 @@ class CounterStore {
 
   async getFromRemote() {
     var r = await api.get('/btc-usd/buy')
-    console.log(r.data)
     if(r.ok)
       this.remoteCounter = r.data.data;
     else
