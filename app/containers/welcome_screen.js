@@ -30,9 +30,6 @@ export default class WelcomeScreen extends Component {
         <Button style={ApplicationStyles.button} onPress={ ()=> counterStore.getFromRemote() }>
           Click to get api data
         </Button>
-        <Button style={ApplicationStyles.button} onPress={ ()=> this.props.navigation.navigate('SecondScreen') }>
-          Click to second screen
-        </Button>
 
         <Button style={ApplicationStyles.button} onPress={ ()=> this.props.navigation.navigate('CounterScreen') }>
           Click to counter screen

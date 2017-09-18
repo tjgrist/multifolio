@@ -1,7 +1,6 @@
 import { TabNavigator, StackNavigator } from 'react-navigation'
 
 import WelcomeScreen from '../containers/welcome_screen'
-import SecondScreen from '../containers/second_screen'
 import CounterScreen from '../containers/counter_screen'
 import CheckinScreen from '../containers/checkin_screen'
 import PortfoliosScreen from '../containers/portfolios-screen'
@@ -10,7 +9,6 @@ import PortfolioDetailScreen from '../containers/portfolio-detail-screen'
 
 const WelcomeTab = StackNavigator({
   WelcomeScreen: { screen: WelcomeScreen },
-  SecondScreen: { screen: SecondScreen },
   CounterScreen: { screen: CounterScreen },
 });
 
