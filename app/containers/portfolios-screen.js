@@ -12,13 +12,13 @@ export default class PortfoliosScreen extends Component {
         tabBarVisible: true,
         title: 'Portfolios',
         tabBarIcon: ({tintColor}) => (
-          <Icon name='star' color={tintColor} size={24}/>
+          <Icon name={'folder'} color={tintColor} size={24}/>
         )
     };
 
 render() {
     return (
-      <Provider store={PortfolioStore}>
+      <Provider portfolioStore={PortfolioStore}>
         <View style={[styles.container, ApplicationStyles.container]}>
         <PortfolioListComponent navigation={this.props.navigation}/>
         <Button rounded

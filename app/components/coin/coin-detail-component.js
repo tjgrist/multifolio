@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import { observer } from 'mobx-react/native'
 import Button from 'react-native-button'
+import {inject, observer} from 'mobx-react/native'
 
-@observer
+@inject('coinStore') @observer
 export default class CoinDetailComponent extends Component {
-
-    constructor (props){
-        super(props)
-        console.log(this.props)
-    }
 
     render() {
         const {coin} = this.props.navigation.state.params
-        console.log(coin)
+        console.log(this.props)
+        const {coinStore} = this.props
         return (
             <View>
                 <Text>{coin.name} | {coin.symbol} | {coin.holdings} | </Text>

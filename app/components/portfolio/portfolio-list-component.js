@@ -5,7 +5,7 @@ import { PortfolioStore } from '../../stores'
 import PortfolioDetailComponent from './portfolio-detail-component'
 import { observer, inject } from 'mobx-react/native'
 
-@inject('store') @observer 
+@inject('portfolioStore') @observer 
 class PortfolioListComponent extends Component {
     
     _renderItem = ({item}) => (
@@ -22,10 +22,11 @@ class PortfolioListComponent extends Component {
     _keyExtractor = (item, index) => item.name
 
     render() {
-        const {store} = this.props
+        const {portfolioStore} = this.props
+        console.log(this.props)
         return (
             <FlatList
-                data={store.get()}
+                data={portfolioStore.get()}
                 keyExtractor={this._keyExtractor}
                 renderItem={this._renderItem}
             />

@@ -4,7 +4,7 @@ import Button from 'react-native-button'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {PortfolioStore, CoinStore} from '../stores'
 import CoinDetailComponent from '../components/coin/coin-detail-component'
-
+import { Provider } from 'mobx-react/native'
 import ApplicationStyles from '../styles'
 
 export default class CoinDetailScreen extends Component {
@@ -15,7 +15,13 @@ export default class CoinDetailScreen extends Component {
 
     render() {
         return (
-        <CoinDetailComponent navigation={this.props.navigation}/>
+        <Provider coinStore={CoinStore}>
+            <View>
+            <CoinDetailComponent 
+                navigation={this.props.navigation}
+            />
+            </View>
+        </Provider>
         )
     }
 }
