@@ -16,7 +16,7 @@ const WelcomeTab = StackNavigator({
 });
 
 const PortfoliosTab = StackNavigator({
-  PortfoliosScreen: { screen: PortfoliosScreen },
+  PortfoliosScreen: { screen: PortfoliosScreen, },
   NewPortfolioScreen: { screen: NewPortfolioScreen },
   PortfolioDetailScreen: { screen: PortfolioDetailScreen},
   CoinDetailScreen: { screen: CoinDetailScreen }
