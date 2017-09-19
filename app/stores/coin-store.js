@@ -4,7 +4,9 @@ class Coin {
     static get() { return realm.objects(Portfolio.schema.name) }
     static schema = {
         name: 'Coin',
+        primaryKey: 'id',
         properties: {
+            id: {type: 'string'},
             name: {type: 'string'},
             symbol: {type: 'string'},
             value: {type: 'double', optional: true},
@@ -21,7 +23,7 @@ class CoinStore {
     static get () { return realm.objects('Coin') }
 
     static create (coin) {
-        if (realm.objects('Coin').filtered("name = '" + coin.name + "'").length) return;
+        if (realm.objects('Coin').filtered("id = '" + coin.id + "'").length) return;
         realm.write(() => {
             realm.create('Coin', coin)
         })
