@@ -10,13 +10,13 @@ const realm = new Realm({schema: [Coin, Portfolio]});
 realm.write(() => {
 
     if (!realm.objects('Portfolio').length) {
-        let btc = { id: uuid(), name: 'Bitcoin', symbol: 'BTC', holdings: 7.9 },
-            ltc = { id: uuid(), name: 'Litecoin', symbol: 'LTC', holdings: 5.8 },
-            eth = { id: uuid(), name: 'Ether', symbol: 'ETH', holdings: 1.5 }
+        let btc = { id: uuid(), name: 'Bitcoin', symbol: 'BTC', holdings: 7.9, exchange: 'Coinbase', pair: 'BTC-USD', buy: true},
+            ltc = { id: uuid(), name: 'Litecoin', symbol: 'LTC', holdings: 5.8, exchange: 'Coinbase', pair: 'LTC-USD', buy: true },
+            eth = { id: uuid(), name: 'Ether', symbol: 'ETH', holdings: 1.5, exchange: 'Coinbase', pair: 'ETH-USD', buy: true }
 
-        let btc2 = { id: uuid(), name: 'Bitcoin', symbol: 'BTC', holdings: 1.9 },
-            ltc2 = { id: uuid(), name: 'Litecoin', symbol: 'LTC', holdings: 19.8 },
-            eth2 = { id: uuid(), name: 'Ether', symbol: 'ETH', holdings: 3.44 }
+        let btc2 = { id: uuid(), name: 'Bitcoin', symbol: 'BTC', holdings: 1.9, exchange: 'Coinbase', pair: 'BTC-USD', buy: true },
+            ltc2 = { id: uuid(), name: 'Litecoin', symbol: 'LTC', holdings: 19.8, exchange: 'Coinbase', pair: 'LTC-USD', buy: true },
+            eth2 = { id: uuid(), name: 'Ether', symbol: 'ETH', holdings: 3.44, exchange: 'Coinbase', pair: 'ETH-USD', buy: true }
 
         let portfolio = { name: 'My Main Portfolio', coins: [btc, ltc, eth]},
             portfolio2 = { name: 'Tradings', coins: [eth2, btc2, ltc2]}

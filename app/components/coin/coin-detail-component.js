@@ -3,17 +3,24 @@ import { Text, View } from 'react-native';
 import Button from 'react-native-button'
 import {inject, observer} from 'mobx-react/native'
 
-@inject('coinStore') @observer
+@observer
 export default class CoinDetailComponent extends Component {
-
-    render() {
+    
+    constructor(props) {
+        super(props)
         const {coin} = this.props.navigation.state.params
-        console.log(this.props)
-        const {coinStore} = this.props
+        this.state = {
+            coin: coin
+        }
+    }
+    
+    render() {
+        console.log(this.state.coin)
+        this.state.coin.getValue().then((val) => this.setState({value: val}))
         return (
             <View>
-                <Text>{coin.name} | {coin.symbol} | {coin.holdings}</Text>
-                <Text>{coin.id}</Text>
+                <Text>{this.state.coin.name} | {this.state.coin.symbol} | {this.state.coin.holdings}</Text>
+                <Text>{this.state.value}</Text>
             </View>
         );
     }

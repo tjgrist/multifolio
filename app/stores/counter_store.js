@@ -1,5 +1,5 @@
 import {observable} from 'mobx'
-import api from './api'
+//import api from './api'
 
 class CounterStore {
   @observable counter = 0;
@@ -22,13 +22,13 @@ class CounterStore {
       }, 500);
   }
 
-  async getFromRemote() {
-    var r = await api.get('/btc-usd/buy')
-    if(r.ok)
-      this.remoteCounter = r.data.data;
-    else
-      this.remoteCounter = 'error';
-  }
+  // async getFromRemote() {
+  //   var r = await api.get('/btc-usd/buy')
+  //   if(r.ok)
+  //     this.remoteCounter = r.data.data;
+  //   else
+  //     this.remoteCounter = 'error';
+  // }
 }
 
 const counterStore = new CounterStore;

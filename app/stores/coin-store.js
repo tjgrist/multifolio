@@ -1,7 +1,32 @@
-import {realm} from './index'
+import { realm } from './index'
+import { create } from 'apisauce'
+import config from '../config'
+import { ApiWorker } from './api'
 
 class Coin {
     static get() { return realm.objects(Portfolio.schema.name) }
+
+    async getValue () {
+        if (!this.exchange) return
+        let matchUrl = config[this.exchange.toUpperCase()]
+        if (matchUrl) {
+            const api = create({
+                baseURL: matchUrl,
+                timeout: 10000
+            });
+            let route = '/' + this.pair + '/' + (this.buy ? 'buy' : 'sell')
+            try {
+                let res = await api.get(route)
+                if (res.ok) {
+                    return res.data.data.amount * this.holdings
+                }
+            }
+            catch (e) {
+                throw e
+            }
+        }
+    }
+
     static schema = {
         name: 'Coin',
         primaryKey: 'id',
@@ -13,7 +38,10 @@ class Coin {
             holdings: {type: 'double', optional: true},
             buyPrice: {type: 'double', optional: true},
             sellPrice: {type: 'double', optional: true},
-            exchange: {type: 'string', optional: true}
+            pair: {type: 'string', optional: true},
+            exchange: {type: 'string', optional: true},
+            buy: {type: 'bool', optional: true},
+            sell: {type: 'bool', optional: true}
         }
     }
 }
@@ -36,7 +64,8 @@ class CoinStore {
     static update (coin) {
         if (this.exists(coin)) {
             realm.write(() => {
-                realm.create('Coin', coin)
+                //passing true tells realm to update that which has primary key 
+                realm.create('Coin', coin, true)
             })
             return coin
         }
@@ -46,15 +75,18 @@ class CoinStore {
     static delete (coin) {
         if (this.exists(coin)) {
             realm.write(() => {
-                realm.delete('Coin', coin)
+                realm.delete(coin)
             })
         }
         throw Error('no coin found with id: ${coin.id}')
 
     }
 
-    async getValue (coin) {
-        //compute coin value
+    static getValue (coin) {
+        let worker = new ApiWorker()
+        let result = worker.computeValue(coin)
+        console.log(result)
+        return result
     }
 
     //helper
