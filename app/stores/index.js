@@ -6,13 +6,13 @@ import uuid from 'uuid'
 // Create Realm DB
 const realm = new Realm({schema: [Coin, Portfolio]});
 
-//can seed db here with realm.write(() => {}) and realm.create(()=>{})
+//can seed db here inside write transaction
 realm.write(() => {
 
     if (!realm.objects('Portfolio').length) {
-        let btc = { id: uuid(),name: 'Bitcoin', symbol: 'BTC', holdings: 7.9 },
-            ltc = { id: uuid(),name: 'Litecoin', symbol: 'LTC', holdings: 5.8 },
-            eth = { id: uuid(),name: 'Ether', symbol: 'ETH', holdings: 1.5 }
+        let btc = { id: uuid(), name: 'Bitcoin', symbol: 'BTC', holdings: 7.9 },
+            ltc = { id: uuid(), name: 'Litecoin', symbol: 'LTC', holdings: 5.8 },
+            eth = { id: uuid(), name: 'Ether', symbol: 'ETH', holdings: 1.5 }
 
         let btc2 = { id: uuid(), name: 'Bitcoin', symbol: 'BTC', holdings: 1.9 },
             ltc2 = { id: uuid(), name: 'Litecoin', symbol: 'LTC', holdings: 19.8 },

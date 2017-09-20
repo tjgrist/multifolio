@@ -12,7 +12,8 @@ export default class CoinDetailComponent extends Component {
         const {coinStore} = this.props
         return (
             <View>
-                <Text>{coin.name} | {coin.symbol} | {coin.holdings} | </Text>
+                <Text>{coin.name} | {coin.symbol} | {coin.holdings}</Text>
+                <Text>{coin.id}</Text>
             </View>
         );
     }

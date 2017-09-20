@@ -22,15 +22,44 @@ class CoinStore {
 
     static get () { return realm.objects('Coin') }
 
+    static getById (id) { return realm.objects('Coin').filtered("id = '" + id + "'") }
+
     static create (coin) {
-        if (realm.objects('Coin').filtered("id = '" + coin.id + "'").length) return;
-        realm.write(() => {
-            realm.create('Coin', coin)
-        })
+        if (!this.exists(coin)) {
+            realm.write(() => {
+                realm.create('Coin', coin)
+            })
+            return coin
+        }
     }
 
-    getValue () {
-        //compute coin values
+    static update (coin) {
+        if (this.exists(coin)) {
+            realm.write(() => {
+                realm.create('Coin', coin)
+            })
+            return coin
+        }
+        throw Error('no coin found with id: ${coin.id}')
+    }
+
+    static delete (coin) {
+        if (this.exists(coin)) {
+            realm.write(() => {
+                realm.delete('Coin', coin)
+            })
+        }
+        throw Error('no coin found with id: ${coin.id}')
+
+    }
+
+    async getValue (coin) {
+        //compute coin value
+    }
+
+    //helper
+    exists (coin) {
+        return realm.objects('Coin').filtered("id = '" + coin.id + "'").length
     }
     
 }
