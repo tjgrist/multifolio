@@ -14,12 +14,13 @@ class Coin {
                 baseURL: matchUrl,
                 timeout: 10000
             });
-            let route = '/' + this.pair + '/' + (this.buy ? 'buy' : 'sell')
+            let route = '/' + this.pair + '/' + (this.buy ? 'buy' : 'sell') 
             try {
                 let res = await api.get(route)
                 if (res.ok) {
                     return res.data.data.amount * this.holdings
                 }
+                return 'Error while fetching data'
             }
             catch (e) {
                 throw e
@@ -80,13 +81,6 @@ class CoinStore {
         }
         throw Error('no coin found with id: ${coin.id}')
 
-    }
-
-    static getValue (coin) {
-        let worker = new ApiWorker()
-        let result = worker.computeValue(coin)
-        console.log(result)
-        return result
     }
 
     //helper
