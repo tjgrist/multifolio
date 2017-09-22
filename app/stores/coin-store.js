@@ -2,16 +2,17 @@ import { realm } from './index'
 import { create } from 'apisauce'
 import config from '../config'
 import { ApiWorker } from './api'
-import { observable, computed } from 'mobx'
+import { observable, computed, action } from 'mobx'
+
 
 class Coin {
 
-
     constructor () {}
 
-    //@computed get value () { return this.getValue().then((v) => {return v} )}
+    @observable val = 0
+    @observable previousVal = 0
 
-    async getValue () {
+    @action async getValue () {
         if (!this.exchange) return
         let matchUrl = config[this.exchange.toUpperCase()]
         if (matchUrl) {
@@ -23,8 +24,13 @@ class Coin {
             try {
                 let res = await api.get(route)
                 if (res.ok) {
-                    let total = res.data.data.amount * this.holdings
-                    return +((total).toFixed(2))
+                    let total = +((res.data.data.amount * this.holdings).toFixed(2))
+                    realm.write(() => {
+                        this.value = total
+                    })
+                    this.previousVal = total
+                    this.val = total
+                    return total
                 }
                 return 'Error while fetching data'
             }

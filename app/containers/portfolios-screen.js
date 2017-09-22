@@ -17,8 +17,10 @@ export default class PortfoliosScreen extends Component {
     };
 
 render() {
+    const root = new RootStore()
+    root.portfolioStore.computeValues()
     return (
-      <Provider rootStore={new RootStore()}>
+      <Provider rootStore={root}>
         <View style={[styles.container, ApplicationStyles.container]}>
         <PortfolioListComponent navigation={this.props.navigation}/>
         <Button rounded

@@ -27,10 +27,9 @@ class PortfolioListComponent extends Component {
 
     render() {
         const {rootStore} = this.props
-        const portfolioStore = rootStore.portfolioStore
         return (
             <FlatList
-                data={portfolioStore.portfolios}
+                data={rootStore.portfolioStore.portfolios}
                 keyExtractor={this._keyExtractor}
                 renderItem={this._renderItem}
             />

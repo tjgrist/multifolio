@@ -27,7 +27,7 @@ class PortfolioDetailComponent extends Component {
         return (
             <View>
                 <Text>{portfolio.name}</Text>
-                <Text>${}</Text>
+                <Text>${portfolio.value}</Text>
                 <FlatList
                     data={portfolio.coins}
                     keyExtractor={this._keyExtractor}
