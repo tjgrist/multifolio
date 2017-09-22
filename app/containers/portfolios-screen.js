@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
-import {PortfolioStore, CoinStore} from '../stores'
+import { RootStore } from '../stores'
 import PortfolioListComponent from '../components/portfolio/portfolio-list-component'
 import { Provider } from 'mobx-react/native'
 
@@ -18,7 +18,7 @@ export default class PortfoliosScreen extends Component {
 
 render() {
     return (
-      <Provider portfolioStore={PortfolioStore}>
+      <Provider rootStore={new RootStore()}>
         <View style={[styles.container, ApplicationStyles.container]}>
         <PortfolioListComponent navigation={this.props.navigation}/>
         <Button rounded

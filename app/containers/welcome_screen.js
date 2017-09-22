@@ -4,7 +4,6 @@ import Button from 'react-native-button'
 import { observer } from 'mobx-react/native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import ApplicationStyles from '../styles'
-import counterStore from '../stores/counter_store'
 
 @observer
 export default class WelcomeScreen extends Component {
@@ -19,21 +18,6 @@ export default class WelcomeScreen extends Component {
     return (
       <View style={[styles.container, ApplicationStyles.container]}>
         <Icon style={styles.welcome} name="home" size={30} />
-        <Text style={styles.text} >
-        </Text>
-        <Text style={styles.text} >
-          Now counter is <Text style={styles.textRed}>{counterStore.counter}</Text>
-        </Text>
-        <Text style={styles.text} >
-          Now remote counter is {counterStore.remoteCounter.amount}
-        </Text>
-        <Button style={ApplicationStyles.button} onPress={ ()=> counterStore.getFromRemote() }>
-          Click to get api data
-        </Button>
-
-        <Button style={ApplicationStyles.button} onPress={ ()=> this.props.navigation.navigate('CounterScreen') }>
-          Click to counter screen
-        </Button>
         <Button style={ApplicationStyles.button} onPress={ ()=> this.props.navigation.navigate('CheckinScreen') }>
           login
         </Button>

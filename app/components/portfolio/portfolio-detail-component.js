@@ -10,9 +10,8 @@ class PortfolioDetailComponent extends Component {
     _renderItem = ({item}) => (
         <View>
             <Button onPress={() => this._onPressItem({item}) }>
-            {item.symbol}
+            {item.symbol} | {item.holdings}
             </Button>
-            <Text>{item.holdings}</Text>
         </View>
     )
 
@@ -28,7 +27,7 @@ class PortfolioDetailComponent extends Component {
         return (
             <View>
                 <Text>{portfolio.name}</Text>
-                <Text>{portfolio.value}</Text>
+                <Text>${}</Text>
                 <FlatList
                     data={portfolio.coins}
                     keyExtractor={this._keyExtractor}

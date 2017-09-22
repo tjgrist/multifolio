@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import {  Text, View, FlatList, TouchableHighlight } from 'react-native';
 import Button from 'react-native-button'
-import { PortfolioStore } from '../../stores'
 import PortfolioDetailComponent from './portfolio-detail-component'
 import { observer, inject } from 'mobx-react/native'
 
-@inject('portfolioStore') @observer 
+@inject('rootStore') @observer 
 class PortfolioListComponent extends Component {
     
-    _renderItem = ({item}) => (
-        <Button onPress={() => this._onPressItem({item}) }>
-            {item.name}
-        </Button>
-    )
+    _renderItem = ({item}) => {
+        return (
+            <View>
+                <Button onPress={() => this._onPressItem({item}) }>
+                    {item.name}
+                </Button>
+                <Text>${item.value}</Text>
+            </View>
+        )
+    }
 
     _onPressItem = ({item}) => {
         const { navigate } = this.props.navigation;
@@ -22,11 +26,11 @@ class PortfolioListComponent extends Component {
     _keyExtractor = (item, index) => item.name
 
     render() {
-        const {portfolioStore} = this.props
-        console.log(this.props)
+        const {rootStore} = this.props
+        const portfolioStore = rootStore.portfolioStore
         return (
             <FlatList
-                data={portfolioStore.get()}
+                data={portfolioStore.portfolios}
                 keyExtractor={this._keyExtractor}
                 renderItem={this._renderItem}
             />

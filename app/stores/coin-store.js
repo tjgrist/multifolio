@@ -2,9 +2,14 @@ import { realm } from './index'
 import { create } from 'apisauce'
 import config from '../config'
 import { ApiWorker } from './api'
+import { observable, computed } from 'mobx'
 
 class Coin {
-    static get() { return realm.objects(Portfolio.schema.name) }
+
+
+    constructor () {}
+
+    //@computed get value () { return this.getValue().then((v) => {return v} )}
 
     async getValue () {
         if (!this.exchange) return
@@ -18,7 +23,8 @@ class Coin {
             try {
                 let res = await api.get(route)
                 if (res.ok) {
-                    return res.data.data.amount * this.holdings
+                    let total = res.data.data.amount * this.holdings
+                    return +((total).toFixed(2))
                 }
                 return 'Error while fetching data'
             }
@@ -35,8 +41,8 @@ class Coin {
             id: {type: 'string'},
             name: {type: 'string'},
             symbol: {type: 'string'},
-            value: {type: 'double', optional: true},
             holdings: {type: 'double', optional: true},
+            value: {type: 'double', optional: true},
             buyPrice: {type: 'double', optional: true},
             sellPrice: {type: 'double', optional: true},
             pair: {type: 'string', optional: true},
@@ -49,7 +55,11 @@ class Coin {
 
 class CoinStore {
 
-    static get () { return realm.objects('Coin') }
+    constructor (rootStore) {
+        this.rootStore = rootStore
+    }
+
+    static get coins() { return realm.objects('Coin') }
 
     static getById (id) { return realm.objects('Coin').filtered("id = '" + id + "'") }
 
@@ -90,4 +100,4 @@ class CoinStore {
     
 }
 
-export {Coin, CoinStore};
+export { CoinStore, Coin };
