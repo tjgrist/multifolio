@@ -30,7 +30,7 @@ class Portfolio {
 
 class PortfolioStore {
 
-    @observable isLoading = true
+    @observable loading = false
 
     constructor (rootStore) {
         this.rootStore = rootStore
@@ -39,6 +39,7 @@ class PortfolioStore {
     @computed get portfolios() { return realm.objects('Portfolio') }
 
     @action async computeValues () {
+        this.loading = true
         let promises = []
         this.portfolios.forEach((p) => {
             p.coins.forEach((c) => {
@@ -52,8 +53,8 @@ class PortfolioStore {
         this.portfolios.forEach((p) => {
             p.getValue()
         })
-        this.isLoading = false
-        console.log(this.isLoading)
+        this.loading = false
+        console.log(this.loading)
     }
 
     static create (portfolio) {

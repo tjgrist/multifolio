@@ -26,7 +26,7 @@ export default class PortfoliosScreen extends Component {
     }
 
 render() {
-    if (this.state.root.portfolioStore.isLoading) {
+    if (this.state.root.portfolioStore.loading) {
       console.log('rendered indicator')
       return ( <ActivityIndicator /> )
     }
