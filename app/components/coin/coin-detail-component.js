@@ -12,12 +12,9 @@ export default class CoinDetailComponent extends Component {
         this.state = {
             coin: coin
         }
-        coin.getValue().then((v) => v)
     }
     
     render() {
-        console.log(this.state.coin)
-        console.log(this.state.coin.value)
         return (
             <View>
                 <Text>{this.state.coin.name} | {this.state.coin.symbol} | {this.state.coin.holdings} | {this.state.coin.value}</Text>

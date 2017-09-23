@@ -7,6 +7,10 @@ import { observer, inject } from 'mobx-react/native'
 @inject('rootStore') @observer 
 class PortfolioListComponent extends Component {
     
+    constructor (props) {
+        super(props)
+    }
+
     _renderItem = ({item}) => {
         return (
             <View>

@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, ActivityIndicator } from 'react-native'
 import { RootStore } from '../stores'
 import PortfolioListComponent from '../components/portfolio/portfolio-list-component'
-import { Provider } from 'mobx-react/native'
+import { Provider, observer } from 'mobx-react/native'
 
 import { Container, Content, Button, Icon } from 'native-base';
 import ApplicationStyles from '../styles'
 
+@observer
 export default class PortfoliosScreen extends Component {
     static navigationOptions = {
         tabBarVisible: true,
@@ -16,11 +17,22 @@ export default class PortfoliosScreen extends Component {
         )
     };
 
+    constructor(props) {
+      super(props)
+      this.state = {
+        root: new RootStore()
+      } 
+      this.state.root.portfolioStore.computeValues()
+    }
+
 render() {
-    const root = new RootStore()
-    root.portfolioStore.computeValues()
+    if (this.state.root.portfolioStore.isLoading) {
+      console.log('rendered indicator')
+      return ( <ActivityIndicator /> )
+    }
+    console.log('rendered list...')
     return (
-      <Provider rootStore={root}>
+      <Provider rootStore={this.state.root}>
         <View style={[styles.container, ApplicationStyles.container]}>
         <PortfolioListComponent navigation={this.props.navigation}/>
         <Button rounded

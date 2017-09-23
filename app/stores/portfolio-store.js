@@ -6,15 +6,14 @@ class Portfolio {
     constructor () {}
 
     getValue() {
+        console.log('portfolio getValue called')
         let values = this.coins.map((coin) => coin.value)
-        return Promise.all(values).then((arr) => {
-            let total = arr.reduce((sum, val) => sum + val, 0)
-            total = +((total).toFixed(2))
-            realm.write(() => {
-                this.value = total
-            })
-            return total
+        let total = values.reduce((sum, val) => sum + val, 0)
+        total = +((total).toFixed(2))
+        realm.write(() => {
+            this.value = total
         })
+        return total
     }
 
     static schema = {
@@ -39,15 +38,22 @@ class PortfolioStore {
 
     @computed get portfolios() { return realm.objects('Portfolio') }
 
-    @action computeValues () {
-        this.isLoading = true;
+    @action async computeValues () {
+        let promises = []
         this.portfolios.forEach((p) => {
             p.coins.forEach((c) => {
-                c.getValue().then((v) => {
-                    p.getValue().then((val) => val )
-                })
+                promises.push(c.getValue())
             })
         })
+        Promise.all(promises).then(() => this.computePortfolios())
+    }
+
+    @action computePortfolios () {
+        this.portfolios.forEach((p) => {
+            p.getValue()
+        })
+        this.isLoading = false
+        console.log(this.isLoading)
     }
 
     static create (portfolio) {
