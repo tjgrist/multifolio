@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  Text, View, FlatList, TouchableHighlight } from 'react-native';
+import {  Text, View, FlatList, TouchableHighlight, ActivityIndicator } from 'react-native';
 import Button from 'react-native-button'
 import PortfolioDetailComponent from './portfolio-detail-component'
 import { observer, inject, Provider } from 'mobx-react/native'
@@ -14,7 +14,6 @@ class PortfolioListComponent extends Component {
         super(props)
         this.state = {
             portfolios: this.props.rootStore.portfolioStore.portfolios,
-            netWorth: this.props.rootStore.portfolioStore.netWorth
         }
     }
 
@@ -49,7 +48,17 @@ class PortfolioListComponent extends Component {
         this.setState({portfolios: this.props.rootStore.portfolioStore.portfolios })
     }
 
+    componentWillMount() {
+        const store = this.props.rootStore.portfolioStore
+        store.computeValues()
+        store.computeNetWorth()
+        this.setState({netWorth: store.netWorth})
+    }
+
     render() {
+        if (this.props.rootStore.portfolioStore.loading) {
+            return ( <ActivityIndicator /> )
+        }
         return (
             <View>
                 <FlatList
@@ -57,7 +66,7 @@ class PortfolioListComponent extends Component {
                     keyExtractor={this._keyExtractor}
                     renderItem={this._renderItem}
                 />
-                <Text>Net worth: ${this.state.netWorth}</Text>
+                <Text>{this.state.netWorth ? 'Net worth: $' + this.state.netWorth : null}</Text>
                 <Provider store={this.props.rootStore}>
                     <NewPortfolioComponent refresh={this.refresh} store={this.props.rootStore} navigation={this.props.navigation}/>
                 </Provider>

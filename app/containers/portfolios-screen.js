@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, ActivityIndicator } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { RootStore, realm } from '../stores'
 import PortfolioListComponent from '../components/portfolio/portfolio-list-component'
 import { Provider, observer } from 'mobx-react/native'
@@ -17,23 +17,9 @@ export default class PortfoliosScreen extends Component {
     )
   };
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      root: new RootStore()
-    }
-  }
-
-  componentWillMount() {
-    this.state.root.portfolioStore.computeValues()
-  }
-
   render() {
-    if (this.state.root.portfolioStore.loading) {
-      return ( <ActivityIndicator /> )
-    }
     return (
-      <Provider rootStore={this.state.root}>
+      <Provider rootStore={new RootStore()}>
         <View style={[styles.container, ApplicationStyles.container]}>
           <PortfolioListComponent navigation={this.props.navigation} />
         </View>
