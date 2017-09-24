@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { RootStore, realm } from '../stores'
-import PortfolioListComponent from '../components/portfolio/portfolio-list-component'
+import PortfolioListComponent from '../components/portfolio/portfolio-list'
 import { Provider, observer } from 'mobx-react/native'
 
 import { Container, Content, Button, Icon } from 'native-base';

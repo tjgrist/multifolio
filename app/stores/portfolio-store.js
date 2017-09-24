@@ -1,5 +1,5 @@
 import {realm} from './index'
-import { observable, computed, action } from 'mobx'
+import { observable, computed, action, autorun } from 'mobx'
 
 class Portfolio {
 
@@ -35,6 +35,7 @@ class PortfolioStore {
     constructor (rootStore) {
         this.rootStore = rootStore
         this.portfolios = realm.objects('Portfolio')
+        autorun(() => this.computeValues())
     }
 
     @action update () {

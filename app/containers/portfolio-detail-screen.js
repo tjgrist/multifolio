@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, FlatList } from 'react-native'
 import Button from 'react-native-button'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {PortfolioStore, CoinStore} from '../stores'
-import PortfolioDetailComponent from '../components/portfolio/portfolio-detail-component'
+import PortfolioDetailComponent from '../components/portfolio/portfolio-detail'
 import Provider from 'mobx-react/native'
 
 import ApplicationStyles from '../styles'

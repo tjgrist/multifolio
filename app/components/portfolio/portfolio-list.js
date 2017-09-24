@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {  Text, View, FlatList, TouchableHighlight, ActivityIndicator } from 'react-native';
 import Button from 'react-native-button'
-import PortfolioDetailComponent from './portfolio-detail-component'
+import PortfolioDetailComponent from './portfolio-detail'
 import { observer, inject, Provider } from 'mobx-react/native'
-import NewPortfolioComponent from './new-portfolio-component'
+import NewPortfolioComponent from './new-portfolio'
 
 import { Container, Content, Button as Btn, Icon } from 'native-base';
 
@@ -50,7 +50,7 @@ class PortfolioListComponent extends Component {
 
     componentWillMount() {
         const store = this.props.rootStore.portfolioStore
-        store.computeValues().then(() => this.setState({netWorth: store.netWorth}))
+        //store.computeValues().then(() => this.setState({netWorth: store.netWorth}))
     }
 
     render() {

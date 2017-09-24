@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, FlatList } from 'react-native'
 import Button from 'react-native-button'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import NewPortfolioComponent from '../components/portfolio/new-portfolio-component'
+import NewPortfolioComponent from '../components/portfolio/new-portfolio'
 import { observer, inject } from 'mobx-react/native'
 
 import ApplicationStyles from '../styles'
