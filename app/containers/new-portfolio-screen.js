@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, FlatList } from 'react-native'
 import Button from 'react-native-button'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import {PortfolioStore, CoinStore} from '../stores'
 import NewPortfolioComponent from '../components/portfolio/new-portfolio-component'
+import { observer, inject } from 'mobx-react/native'
 
 import ApplicationStyles from '../styles'
 
+@inject('rootStore') @observer
 export default class NewPortfolioScreen extends Component {
     static navigationOptions = {
         tabBarVisible: false,
@@ -23,8 +24,9 @@ export default class NewPortfolioScreen extends Component {
     }
 
 render() {
+    const {store} = this.props.navigation.state.params
     return (
-      <NewPortfolioComponent/>
+      <NewPortfolioComponent store={store}/>
     )
   }
 }

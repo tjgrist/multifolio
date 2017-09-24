@@ -6,7 +6,6 @@ class Portfolio {
     constructor () {}
 
     getValue() {
-        console.log('portfolio getValue called')
         let values = this.coins.map((coin) => coin.value)
         let total = values.reduce((sum, val) => sum + val, 0)
         total = +((total).toFixed(2))
@@ -31,12 +30,17 @@ class Portfolio {
 class PortfolioStore {
 
     @observable loading = false
+    @observable netWorth = 0
+    @observable portfolios
 
     constructor (rootStore) {
         this.rootStore = rootStore
+        this.portfolios = realm.objects('Portfolio')
     }
 
-    @computed get portfolios() { return realm.objects('Portfolio') }
+    @action update () {
+        this.portfolios = realm.objects('Portfolio')
+    }
 
     @action async computeValues () {
         this.loading = true
@@ -53,15 +57,28 @@ class PortfolioStore {
         this.portfolios.forEach((p) => {
             p.getValue()
         })
-        this.loading = false
-        console.log(this.loading)
+        this.computeNetWorth()
     }
 
-    static create (portfolio) {
+    @action computeNetWorth () {
+        let total = this.portfolios.reduce((sum, p) => sum + p.value, 0)
+        total = +((total)).toFixed(2)
+        this.netWorth = total
+        this.loading = false
+    }
+
+    @action create (portfolio) {
         if (realm.objects('Portfolio').filtered("name = '" + portfolio.name + "'").length) return;
         realm.write(() => {
             portfolio.coins = portfolio.coins || []
             realm.create('Portfolio', portfolio)
+        })
+    }
+
+    @action remove (portfolio) {
+        if (!realm.objects('Portfolio').filtered("name = '" + portfolio.name + "'").length) return;
+        realm.write(() => {
+            realm.delete(portfolio)
         })
     }
 
