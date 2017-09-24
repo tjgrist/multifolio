@@ -21,9 +21,9 @@ realm.write(() => {
             ltc = { id: uuid(), name: 'Litecoin', symbol: 'LTC', holdings: 5.8, exchange: 'Coinbase', pair: 'LTC-USD', buy: true},
             eth = { id: uuid(), name: 'Ether', symbol: 'ETH', holdings: 1.5, exchange: 'Coinbase', pair: 'ETH-USD', buy: true }
         
-        let btc2 = { id: uuid(), name: 'Bitcoin', symbol: 'BTC', holdings: 0.4, exchange: 'Coinbase', pair: 'BTC-USD', buy: true},
-            ltc2 = { id: uuid(), name: 'Litecoin', symbol: 'LTC', holdings: 12.5, exchange: 'Coinbase', pair: 'LTC-USD', buy: true},
-            eth2 = { id: uuid(), name: 'Ether', symbol: 'ETH', holdings: 2.44, exchange: 'Coinbase', pair: 'ETH-USD', buy: true }
+        let btc2 = { id: uuid(), name: 'Bitcoin', symbol: 'BTC', holdings: 0.509, exchange: 'Coinbase', pair: 'BTC-USD', buy: true},
+            ltc2 = { id: uuid(), name: 'Litecoin', symbol: 'LTC', holdings: 12.86, exchange: 'Coinbase', pair: 'LTC-USD', buy: true},
+            eth2 = { id: uuid(), name: 'Ether', symbol: 'ETH', holdings: 0.734, exchange: 'Coinbase', pair: 'ETH-USD', buy: true }
 
         let btc3 = { id: uuid(), name: 'Bitcoin', symbol: 'BTC', holdings: 1, exchange: 'Coinbase', pair: 'BTC-USD', buy: true},
             ltc3 = { id: uuid(), name: 'Litecoin', symbol: 'LTC', holdings: 1, exchange: 'Coinbase', pair: 'LTC-USD', buy: true},

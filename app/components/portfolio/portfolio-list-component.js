@@ -50,13 +50,12 @@ class PortfolioListComponent extends Component {
 
     componentWillMount() {
         const store = this.props.rootStore.portfolioStore
-        store.computeValues()
-        store.computeNetWorth()
-        this.setState({netWorth: store.netWorth})
+        store.computeValues().then(() => this.setState({netWorth: store.netWorth}))
     }
 
     render() {
-        if (this.props.rootStore.portfolioStore.loading) {
+        const store = this.props.rootStore.portfolioStore
+        if (store.loading) {
             return ( <ActivityIndicator /> )
         }
         return (
@@ -66,7 +65,7 @@ class PortfolioListComponent extends Component {
                     keyExtractor={this._keyExtractor}
                     renderItem={this._renderItem}
                 />
-                <Text>{this.state.netWorth ? 'Net worth: $' + this.state.netWorth : null}</Text>
+                <Text>{store.netWorth ? 'Net worth: $' + store.netWorth : null}</Text>
                 <Provider store={this.props.rootStore}>
                     <NewPortfolioComponent refresh={this.refresh} store={this.props.rootStore} navigation={this.props.navigation}/>
                 </Provider>

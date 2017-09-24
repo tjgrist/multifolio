@@ -30,7 +30,6 @@ class Portfolio {
 class PortfolioStore {
 
     @observable loading = false
-    @observable netWorth = 0
     @observable portfolios
 
     constructor (rootStore) {
@@ -57,14 +56,12 @@ class PortfolioStore {
         this.portfolios.forEach((p) => {
             p.getValue()
         })
-        this.computeNetWorth()
+        this.loading = false
     }
 
-    @action computeNetWorth () {
+    @computed get netWorth () {
         let total = this.portfolios.reduce((sum, p) => sum + p.value, 0)
-        total = +((total)).toFixed(2)
-        this.netWorth = total
-        this.loading = false
+        return +((total)).toFixed(2)
     }
 
     @action create (portfolio) {
