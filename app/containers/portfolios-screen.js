@@ -18,10 +18,14 @@ export default class PortfoliosScreen extends Component {
   };
 
   render() {
+    console.log(this.props.screenProps)
     return (
-      <Provider rootStore={new RootStore()}>
+      <Provider rootStore={this.props.screenProps}>
         <View style={[styles.container, ApplicationStyles.container]}>
           <PortfolioListComponent navigation={this.props.navigation} />
+          <Button rounded onPress={() => this.props.navigation.navigate('NewPortfolioScreen')}>
+              <Icon name={'add'} />
+          </Button>
         </View>
       </Provider>
     )

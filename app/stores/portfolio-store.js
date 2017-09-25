@@ -5,6 +5,7 @@ class Portfolio {
 
     constructor () {}
 
+    //synchronous
     getValue() {
         let values = this.coins.map((coin) => coin.value)
         let total = values.reduce((sum, val) => sum + val, 0)

@@ -7,7 +7,7 @@ import { observer, inject } from 'mobx-react/native'
 
 import ApplicationStyles from '../styles'
 
-@inject('rootStore') @observer
+@observer
 export default class NewPortfolioScreen extends Component {
     static navigationOptions = {
         tabBarVisible: false,
@@ -24,9 +24,9 @@ export default class NewPortfolioScreen extends Component {
     }
 
 render() {
-    const {store} = this.props.navigation.state.params
+  console.log(this.props.screenProps)
     return (
-      <NewPortfolioComponent store={store}/>
+      <NewPortfolioComponent store={this.props.screenProps}/>
     )
   }
 }

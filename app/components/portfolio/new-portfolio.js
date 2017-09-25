@@ -11,16 +11,11 @@ class NewPortfolioComponent extends Component {
     name: ''
   }
 
-  save = () => {
-    console.log(this.props)
-    const portfolioStore = this.props.store.portfolioStore
-    console.log(portfolioStore)
+  save = () => {  
     let portfolio = { name: this.state.name }
-    portfolioStore.create(portfolio)
+    this.props.store.portfolioStore.create(portfolio)
     this.setState({name: ''})
-    this.props.refresh()
   }
-
 
   render() {
     return (
@@ -30,8 +25,8 @@ class NewPortfolioComponent extends Component {
         onChangeText={(name) => this.setState({name})}
         value={this.state.name}
         />
-        <Button style={ApplicationStyles.button} onPress={ ()=> {this.save() } }>
-          Add
+        <Button style={ApplicationStyles.button} onPress={ ()=> { this.save() } }>
+          Save
         </Button>
       </View>
     );

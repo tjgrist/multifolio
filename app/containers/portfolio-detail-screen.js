@@ -15,13 +15,8 @@ export default class PortfolioDetailScreen extends Component {
     };
 
     render() {
-        console.log(this.props)
         return (
-        <PortfolioDetailComponent 
-          navigation={this.props.navigation}
-          portfolioStore={PortfolioStore}
-          coinStore={CoinStore}
-        />
+        <PortfolioDetailComponent navigation={this.props.navigation}/>
         )
     }
 }

@@ -15,12 +15,9 @@ class ApiWorker {
         baseURL: config.COINBASE,
         timeout: 10000
       });
-      //api.setBaseURL(matchUrl)
       let route = '/' + coin.pair + '/' + coin.buy ? 'buy' : 'sell'
       let res = await api.get(route)
-      console.log(res)
       if (res.ok) {
-        console.log(res.data.data.amount * coin.holdings)
         let result = res.data.data.amount * coin.holdings
         return result
       }

@@ -12,6 +12,7 @@ class PortfolioListComponent extends Component {
     
     constructor (props) {
         super(props)
+        console.log(this.props)
         this.state = {
             portfolios: this.props.rootStore.portfolioStore.portfolios,
         }
@@ -62,11 +63,6 @@ class PortfolioListComponent extends Component {
                     keyExtractor={this._keyExtractor}
                     renderItem={this._renderItem}
                 />
-                <Provider store={this.props.rootStore}>
-                    <Button rounded onPress={() => this.props.navigation.navigate('NewPortfolioScreen')}>
-                        <Icon name={'add'} />
-                    </Button>
-                </Provider>
             </View>
         );
     }
