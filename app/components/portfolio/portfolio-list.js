@@ -48,11 +48,6 @@ class PortfolioListComponent extends Component {
         this.setState({portfolios: this.props.rootStore.portfolioStore.portfolios })
     }
 
-    componentWillMount() {
-        const store = this.props.rootStore.portfolioStore
-        //store.computeValues().then(() => this.setState({netWorth: store.netWorth}))
-    }
-
     render() {
         const store = this.props.rootStore.portfolioStore
         if (store.loading) {
@@ -60,14 +55,17 @@ class PortfolioListComponent extends Component {
         }
         return (
             <View>
+                <Text>{store.netWorth ? 'Net worth: $' + store.netWorth : null}</Text>
+                <Text></Text>
                 <FlatList
-                    data={this.state.portfolios}
+                    data={store.portfolios}
                     keyExtractor={this._keyExtractor}
                     renderItem={this._renderItem}
                 />
-                <Text>{store.netWorth ? 'Net worth: $' + store.netWorth : null}</Text>
                 <Provider store={this.props.rootStore}>
-                    <NewPortfolioComponent refresh={this.refresh} store={this.props.rootStore} navigation={this.props.navigation}/>
+                    <Button rounded onPress={() => this.props.navigation.navigate('NewPortfolioScreen')}>
+                        <Icon name={'add'} />
+                    </Button>
                 </Provider>
             </View>
         );
