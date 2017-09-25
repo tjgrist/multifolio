@@ -9,60 +9,40 @@ import { Container, Content, Button as Btn, Icon } from 'native-base';
 
 @inject('rootStore') @observer 
 class PortfolioListComponent extends Component {
-    
-    constructor (props) {
-        super(props)
-        console.log(this.props)
-        this.state = {
-            portfolios: this.props.rootStore.portfolioStore.portfolios,
-        }
-    }
 
-    _renderItem = ({item}) => {
+    renderItem = ({item}) => {
         return (
             <View>
-                <Button onPress={() => this._onPressItem({item}) }>
-                    <Text>{item.name}</Text>
-                </Button>
-                <Text>${item.value}</Text>
-                <Button onPress={() => this.remove({item}) }>
-                    <Icon name={'trash'} size={16} />
+                <Button onPress={() => this.onPressItem({item}) }>
+                    <Text>{item.name} | ${item.value}</Text>
                 </Button>
             </View>
         )
     }
 
-    _onPressItem = ({item}) => {
-        const { navigate } = this.props.navigation;
-        navigate('PortfolioDetailScreen', {portfolio: item})
+    onPressItem = ({item}) => {
+        this.props.navigation.navigate('PortfolioDetailScreen', {name: item.name})
     }
 
-    _keyExtractor = (item, index) => item.name
-
-    remove = ({item}) => {
-        this.props.rootStore.portfolioStore.remove(item)
-        this.refresh()
-    }
-
-    refresh = () => {
-        this.props.rootStore.portfolioStore.update()
-        this.setState({portfolios: this.props.rootStore.portfolioStore.portfolios })
-    }
+    keyExtractor = (item, index) => item.name
 
     render() {
-        const store = this.props.rootStore.portfolioStore
-        if (store.loading) {
+        const {portfolioStore} = this.props.rootStore
+        let portfolios = portfolioStore.portfolios
+        if (portfolioStore.loading) {
             return ( <ActivityIndicator /> )
         }
         return (
             <View>
-                <Text>{store.netWorth ? 'Net worth: $' + store.netWorth : null}</Text>
-                <Text></Text>
+                <Text>{portfolioStore.netWorth ? 'Net worth: $' + portfolioStore.netWorth : null}</Text>
                 <FlatList
-                    data={store.portfolios}
-                    keyExtractor={this._keyExtractor}
-                    renderItem={this._renderItem}
+                    data={portfolios}
+                    keyExtractor={this.keyExtractor}
+                    renderItem={this.renderItem}
                 />
+                <Btn rounded onPress={() => this.props.navigation.navigate('NewPortfolioScreen')}>
+                    <Icon name={'add'} />
+                </Btn>
             </View>
         );
     }

@@ -24,9 +24,11 @@ export default class NewPortfolioScreen extends Component {
     }
 
 render() {
-  console.log(this.props.screenProps)
     return (
-      <NewPortfolioComponent store={this.props.screenProps}/>
+      <NewPortfolioComponent 
+        store={this.props.screenProps}
+        navigation={this.props.navigation}  
+      />
     )
   }
 }

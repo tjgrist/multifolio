@@ -16,7 +16,10 @@ export default class PortfolioDetailScreen extends Component {
 
     render() {
         return (
-        <PortfolioDetailComponent navigation={this.props.navigation}/>
+        <PortfolioDetailComponent 
+          stores={this.props.screenProps} 
+          navigation={this.props.navigation}
+        />
         )
     }
 }

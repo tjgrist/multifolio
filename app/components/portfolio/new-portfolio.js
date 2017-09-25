@@ -8,23 +8,26 @@ import { observer, inject } from 'mobx-react/native'
 class NewPortfolioComponent extends Component {
   
   state = {
-    name: ''
+    name: '',
+    msg: ''
   }
 
   save = () => {  
     let portfolio = { name: this.state.name }
-    this.props.store.portfolioStore.create(portfolio)
-    this.setState({name: ''})
+    let msg = this.props.store.portfolioStore.create(portfolio)
+    this.setState({name: '', msg: msg})
+    this.props.navigation.navigate('PortfoliosScreen')
   }
 
   render() {
     return (
       <View>
         <TextInput
-        style={{height: 30, width: 260, borderColor: 'gray', borderWidth: 1}}
-        onChangeText={(name) => this.setState({name})}
-        value={this.state.name}
+          style={{height: 30, width: 260, borderColor: 'gray', borderWidth: 1}}
+          onChangeText={(name) => this.setState({name})}
+          value={this.state.name}
         />
+        <Text>{this.state.msg}</Text>
         <Button style={ApplicationStyles.button} onPress={ ()=> { this.save() } }>
           Save
         </Button>

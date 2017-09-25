@@ -7,9 +7,6 @@ import NewPortfolioScreen from '../containers/new-portfolio-screen'
 import PortfolioDetailScreen from '../containers/portfolio-detail-screen'
 import CoinDetailScreen from '../containers/coin-detail-screen'
 
-import React from 'react'
-import { RootStore } from '../stores'
-
 const WelcomeTab = StackNavigator({
   WelcomeScreen: { screen: WelcomeScreen },
   CheckinScreen: { screen: CheckinScreen },
@@ -27,7 +24,5 @@ const Navigation = TabNavigator({
   Portfolios: { screen: PortfoliosTab },
   Home: { screen: WelcomeTab },
 });
-
-<PortfoliosTab screenProps={new RootStore()} />
 
 export default Navigation
