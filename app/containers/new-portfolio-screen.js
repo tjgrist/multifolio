@@ -11,7 +11,7 @@ import ApplicationStyles from '../styles'
 export default class NewPortfolioScreen extends Component {
     static navigationOptions = {
         tabBarVisible: false,
-        title: 'New Portfolio',
+        title: 'Create a Portfolio',
     };
 
     constructor (props) {

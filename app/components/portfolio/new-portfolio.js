@@ -16,7 +16,7 @@ class NewPortfolioComponent extends Component {
     let portfolio = { name: this.state.name }
     let msg = this.props.store.portfolioStore.create(portfolio)
     this.setState({name: '', msg: msg})
-    this.props.navigation.navigate('PortfoliosScreen')
+    this.props.navigation.goBack()
   }
 
   render() {

@@ -8,10 +8,10 @@ import { Provider } from 'mobx-react/native'
 import ApplicationStyles from '../styles'
 
 export default class CoinDetailScreen extends Component {
-    static navigationOptions = {
+    static navigationOptions = ({ navigation }) => ({
         tabBarVisible: false,
-        title: 'Coin Detail',
-    };
+        title: navigation.state.params.coin.name,
+    });
 
     render() {
         return (

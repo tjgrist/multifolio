@@ -9,10 +9,10 @@ import Provider from 'mobx-react/native'
 import ApplicationStyles from '../styles'
 
 export default class PortfolioDetailScreen extends Component {
-    static navigationOptions = {
+    static navigationOptions = ({ navigation }) => ({
         tabBarVisible: false,
-        title: 'Portfolio Detail',
-    };
+        title: navigation.state.params.name,
+    });
 
     render() {
         return (

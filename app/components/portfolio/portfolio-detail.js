@@ -32,8 +32,7 @@ class PortfolioDetailComponent extends Component {
         if (item) {
             const { portfolioStore } = this.props.stores
             portfolioStore.remove(item)
-            const { navigate } = this.props.navigation;
-            navigate('PortfoliosScreen')
+            this.props.navigation.goBack()
         }
     }
 
