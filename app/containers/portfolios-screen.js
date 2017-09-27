@@ -17,9 +17,7 @@ export default class PortfoliosScreen extends Component {
   render() {
     return (
       <Provider rootStore={this.props.screenProps}>
-        <View style={[styles.container, ApplicationStyles.container]}>
           <PortfolioListComponent navigation={this.props.navigation} />
-        </View>
       </Provider>
     )
   }
