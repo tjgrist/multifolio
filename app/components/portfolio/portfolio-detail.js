@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FlatList, Alert, View, ScrollView } from 'react-native';
 import { observer } from 'mobx-react/native'
-import { Icon } from 'native-base';
+import Icon from 'react-native-vector-icons/FontAwesome'
 import { 
     Divider, 
     Image, 
@@ -22,6 +22,12 @@ const DeleteButton = (props) => (
     </TouchableOpacity>
 )
 
+const AddCoinButton = (props) => (
+    <TouchableOpacity onPress={() => props.navigation.navigate('AddCoinScreen', {name: props.name})}>
+    <Icon name={'plus'} size={16} />
+    </TouchableOpacity>
+)
+
 @observer    
 export default class PortfolioDetailComponent extends Component {
 
@@ -29,6 +35,7 @@ export default class PortfolioDetailComponent extends Component {
         super(props)
         const {name} = props.navigation.state.params
         this.state = {
+            name: name,
             portfolio: props.stores.portfolioStore.getByName(name),
             alertMsg: 'Are you sure you want to delete this portfolio?'
         }
@@ -89,6 +96,9 @@ export default class PortfolioDetailComponent extends Component {
                 </ScrollView>
                  <Divider styleName='line'/>
                  <DeleteButton alert={this.alert}/>
+                 <AddCoinButton 
+                    navigation={this.props.navigation} 
+                    name={this.state.name}/>
             </View>
         );
     }
