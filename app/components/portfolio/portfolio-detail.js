@@ -1,28 +1,40 @@
 import React, { Component } from 'react';
-import { Text, View, FlatList, ActivityIndicator } from 'react-native';
+import { FlatList, Alert, View } from 'react-native';
 import { observer } from 'mobx-react/native'
-import { Container, Content, Icon } from 'native-base';
+import { Icon } from 'native-base';
+import { 
+    Divider, 
+    Image, 
+    Title, 
+    Subtitle, 
+    Screen, 
+    Heading, 
+    Button, 
+    Caption, 
+    TouchableOpacity,
+    Row, 
+    } from '@shoutem/ui'
 
-import { Divider, Image, Title, Subtitle, Screen, Heading, Button, Caption, TouchableOpacity } from '@shoutem/ui'
-
-@observer
-class PortfolioDetailComponent extends Component {
+@observer    
+export default class PortfolioDetailComponent extends Component {
 
     constructor (props) {
         super(props)
         const {name} = this.props.navigation.state.params
-        console.log(this.props)
         this.state = {
-            portfolio: this.props.stores.portfolioStore.getByName(name)
+            portfolio: this.props.stores.portfolioStore.getByName(name),
+            alertMsg: 'Are you sure you want to delete this portfolio?'
         }
     }
 
     renderItem = ({item}) => (
             <TouchableOpacity onPress={() => this.onPressItem({item}) }>
-                <Title>{item.symbol}</Title>
-                <Subtitle>{item.holdings}</Subtitle>
-                <Subtitle>{item.value}</Subtitle>
-            </TouchableOpacity>
+                <Row>    
+                    <Title>{item.symbol}</Title>
+                    <Subtitle>{item.holdings}</Subtitle>
+                    <Subtitle>{item.value}</Subtitle>
+                </Row>
+                </TouchableOpacity>
     )
 
     onPressItem = ({item}) => {
@@ -35,9 +47,18 @@ class PortfolioDetailComponent extends Component {
     remove = (item) => {
         if (item) {
             const { portfolioStore } = this.props.stores
-            portfolioStore.remove(item)
+            portfolioStore.delete(item)
             this.props.navigation.goBack()
         }
+    }
+
+    alert = () => {
+        Alert.alert('Delete', 
+        this.state.alertMsg,
+    [
+        {text: 'Cancel', onPress: () => null, style: 'cancel' },
+        {text: 'Ok', onPress: () => this.remove(this.state.portfolio)},
+    ])
     }
 
     render() {
@@ -57,13 +78,11 @@ class PortfolioDetailComponent extends Component {
                     keyExtractor={this.keyExtractor}
                     renderItem={this.renderItem}
                 />
-                <Divider stylename='line'/>
-                <Button onPress={() => this.remove(this.state.portfolio) }>
+                <Divider styleName='line'/>
+                <Button onPress={() => this.alert()}>
                     <Icon name={'trash'} size={16} />
                 </Button>
             </View>
         );
     }
 }
-
-export default PortfolioDetailComponent

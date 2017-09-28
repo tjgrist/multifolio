@@ -31,8 +31,7 @@ class Portfolio {
 class PortfolioStore {
 
     @observable loading = false
-
-    @computed get portfolios () { return realm.objects('Portfolio') }
+    @computed get portfolios () { return realm.objects('Portfolio')}
 
     constructor (rootStore) {
         this.rootStore = rootStore
@@ -75,7 +74,7 @@ class PortfolioStore {
         return 'Success!'
     }
 
-    remove (portfolio) {
+    delete (portfolio) {
         if (!realm.objects('Portfolio').filtered("name = '" + portfolio.name + "'").length) return;
         realm.write(() => {
             realm.delete(portfolio)

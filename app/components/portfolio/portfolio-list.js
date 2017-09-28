@@ -9,7 +9,14 @@ import { Container, Content, Button as Btn, Icon } from 'native-base';
 import { Divider, Image, Title, Subtitle, Screen, Heading } from '@shoutem/ui'
 
 @inject('rootStore') @observer 
-class PortfolioListComponent extends Component {
+export default class PortfolioListComponent extends Component {
+
+    constructor (props) {
+        super(props)
+        this.state = {
+            portfolios: props.rootStore.portfolioStore.portfolios
+        }
+    }
 
     renderItem = ({item}) => {
         return (
@@ -50,5 +57,3 @@ class PortfolioListComponent extends Component {
         );
     }
 }
-
-export default PortfolioListComponent
