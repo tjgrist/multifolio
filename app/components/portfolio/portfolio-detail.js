@@ -16,6 +16,12 @@ import {
     Footer
     } from '@shoutem/ui'
 
+const DeleteButton = (props) => (
+    <TouchableOpacity onPress={() => props.alert()}>
+    <Icon name={'trash'} size={16} />
+    </TouchableOpacity>
+)
+
 @observer    
 export default class PortfolioDetailComponent extends Component {
 
@@ -81,10 +87,8 @@ export default class PortfolioDetailComponent extends Component {
                         renderItem={this.renderItem}
                     />
                 </ScrollView>
-                <Divider styleName='line'/>
-                <TouchableOpacity onPress={() => this.alert()}>
-                    <Icon name={'trash'} size={16} />
-                </TouchableOpacity>
+                 <Divider styleName='line'/>
+                 <DeleteButton alert={this.alert}/>
             </View>
         );
     }
