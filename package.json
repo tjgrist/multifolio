@@ -7,7 +7,6 @@
 		"test": "jest"
 	},
 	"dependencies": {
-		"@shoutem/theme": "^0.10.0",
 		"@shoutem/ui": "^0.21.3",
 		"apisauce": "^0.12.0",
 		"mobx": "^3.1.9",
@@ -17,6 +16,8 @@
 		"react-loading": "^0.1.4",
 		"react-native": "0.48.3",
 		"react-native-button": "^1.8.2",
+		"react-native-linear-gradient": "^2.3.0",
+		"react-native-photo-view": "^1.5.2",
 		"react-native-smart-keyboard": "git+https://github.com/80percent/react-native-smart-keyboard.git",
 		"react-native-vector-icons": "^4.4.0",
 		"react-navigation": "^1.0.0-beta.9",

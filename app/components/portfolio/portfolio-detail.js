@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, Alert, View } from 'react-native';
+import { FlatList, Alert, View, ScrollView } from 'react-native';
 import { observer } from 'mobx-react/native'
 import { Icon } from 'native-base';
 import { 
@@ -13,6 +13,7 @@ import {
     Caption, 
     TouchableOpacity,
     Row, 
+    Footer
     } from '@shoutem/ui'
 
 @observer    
@@ -29,11 +30,11 @@ export default class PortfolioDetailComponent extends Component {
 
     renderItem = ({item}) => (
             <TouchableOpacity onPress={() => this.onPressItem({item}) }>
-                <Row>    
+                <Divider styleName='section-header'>    
                     <Title>{item.symbol}</Title>
                     <Subtitle>{item.holdings}</Subtitle>
                     <Subtitle>{item.value}</Subtitle>
-                </Row>
+                </Divider>
                 </TouchableOpacity>
     )
 
@@ -73,15 +74,17 @@ export default class PortfolioDetailComponent extends Component {
                     <Caption>HOLDINGS</Caption>
                     <Caption>VALUE</Caption>
                     </Divider>
-                <FlatList
-                    data={this.state.portfolio.coins}
-                    keyExtractor={this.keyExtractor}
-                    renderItem={this.renderItem}
-                />
+                <ScrollView>
+                    <FlatList
+                        data={this.state.portfolio.coins}
+                        keyExtractor={this.keyExtractor}
+                        renderItem={this.renderItem}
+                    />
+                </ScrollView>
                 <Divider styleName='line'/>
-                <Button onPress={() => this.alert()}>
+                <TouchableOpacity onPress={() => this.alert()}>
                     <Icon name={'trash'} size={16} />
-                </Button>
+                </TouchableOpacity>
             </View>
         );
     }

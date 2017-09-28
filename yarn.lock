@@ -9,7 +9,7 @@
     hoist-non-react-statics "^1.2.0"
     lodash "^4.15.0"
 
-"@shoutem/theme@^0.10.0", "@shoutem/theme@~0.10.0":
+"@shoutem/theme@~0.10.0":
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/@shoutem/theme/-/theme-0.10.0.tgz#a11e597c6feaac3fbf40f74651e5c604804a965c"
   dependencies:
@@ -3812,6 +3812,12 @@ react-native-lightbox@shoutem/react-native-lightbox#4e58b9b1aca166142d69b161ff51
     react-native-view-transformer ldn0x7dc/react-native-view-transformer#f7e028b6566022deac4e523052e74c2c63a4af7e
     react-timer-mixin "^0.13.3"
 
+react-native-linear-gradient@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.3.0.tgz#757997197e35edf52e290891a11566e462845da1"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-linear-gradient@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.0.0.tgz#7442c00e1fcd9fca329119dcbaf744d12bcd1b5a"
@@ -3821,6 +3827,12 @@ react-native-navigation-experimental-compat@1.0.0:
   resolved "https://registry.yarnpkg.com/react-native-navigation-experimental-compat/-/react-native-navigation-experimental-compat-1.0.0.tgz#2b00903a3d305b1234eec289550a83e1f2eae627"
   dependencies:
     fbjs "~0.8.9"
+
+react-native-photo-view@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/react-native-photo-view/-/react-native-photo-view-1.5.2.tgz#5d7f406ed5532a5a8a78c8ef8f40e81f688de1e2"
+  dependencies:
+    prop-types "^15.5.10"
 
 react-native-photo-view@~1.2.0:
   version "1.2.0"
