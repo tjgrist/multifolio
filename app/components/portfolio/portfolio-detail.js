@@ -27,9 +27,9 @@ export default class PortfolioDetailComponent extends Component {
 
     constructor (props) {
         super(props)
-        const {name} = this.props.navigation.state.params
+        const {name} = props.navigation.state.params
         this.state = {
-            portfolio: this.props.stores.portfolioStore.getByName(name),
+            portfolio: props.stores.portfolioStore.getByName(name),
             alertMsg: 'Are you sure you want to delete this portfolio?'
         }
     }
