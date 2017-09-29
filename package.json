@@ -18,6 +18,7 @@
 		"react-native-button": "^1.8.2",
 		"react-native-linear-gradient": "^2.3.0",
 		"react-native-photo-view": "^1.5.2",
+		"react-native-search-filter": "^0.1.1",
 		"react-native-smart-keyboard": "git+https://github.com/80percent/react-native-smart-keyboard.git",
 		"react-native-vector-icons": "^4.4.0",
 		"react-navigation": "^1.0.0-beta.9",

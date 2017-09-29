@@ -1,31 +1,38 @@
-class constants {
+class Constants {
 
-    constructor () {
+    constructor () {}
 
-    }
-    // exchanges = [
-    //     {
-    //         name: 'Coinbase',
-    //         pairs: [
-    //             this.pairs.BTCUSD,
-    //             this.pairs.ETHUSD,
-    //             this.pairs.LTCUSD
-    //         ]
-    //     }
-    // ]
+    exchanges = [
+        {
+            name: 'Coinbase',
+        }
+    ]
 
     pairs = [
         {
             name: 'Litecoin',
-            pair: 'LTC-USD'
+            pair: 'LTC-USD',
+            exchanges: [
+                {name:'Coinbase'},
+                {name: 'Bitfinex'}
+            ]
         },
         {
             name: 'Bitcoin',
-            pair: 'BTC-USD'
+            pair: 'BTC-USD',
+            exchanges: [
+                {name:'Coinbase'},
+                {name:'Kraken'},
+                {name: 'Cex.io'}
+            ]
         },
         {
             name: 'Ether',
-            pair: 'ETH-USD'
+            pair: 'ETH-USD',
+            exchanges: [
+                {name:'Coinbase'},
+                {name: 'Bittrex'}
+            ]
         }
     ]
 
@@ -36,5 +43,7 @@ class constants {
     ]
 
 }
-const Constants = new constants()
-export default Constants
+
+const constants = new Constants()
+
+export default constants
