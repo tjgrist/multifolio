@@ -42,13 +42,13 @@ export default class PortfolioDetailComponent extends Component {
     }
 
     renderItem = ({item}) => (
-            <TouchableOpacity onPress={() => this.onPressItem({item}) }>
-                <Divider styleName='section-header'>    
-                    <Title>{item.symbol}</Title>
-                    <Subtitle>{item.holdings}</Subtitle>
-                    <Subtitle>{item.value}</Subtitle>
-                </Divider>
-                </TouchableOpacity>
+        <TouchableOpacity onPress={() => this.onPressItem({item}) }>
+            <Divider styleName='section-header'>    
+                <Title>{item.symbol}</Title>
+                <Subtitle>{item.holdings}</Subtitle>
+                <Subtitle>{item.value}</Subtitle>
+            </Divider>
+            </TouchableOpacity>
     )
 
     onPressItem = ({item}) => {
@@ -69,10 +69,10 @@ export default class PortfolioDetailComponent extends Component {
     alert = () => {
         Alert.alert('Delete', 
         this.state.alertMsg,
-    [
-        {text: 'Cancel', onPress: () => null, style: 'cancel' },
-        {text: 'Ok', onPress: () => this.remove(this.state.portfolio)},
-    ])
+        [
+            {text: 'Cancel', onPress: () => null, style: 'cancel' },
+            {text: 'Ok', onPress: () => this.remove(this.state.portfolio)},
+        ])
     }
 
     render() {
@@ -94,11 +94,12 @@ export default class PortfolioDetailComponent extends Component {
                         renderItem={this.renderItem}
                     />
                 </ScrollView>
-                 <Divider styleName='line'/>
-                 <DeleteButton alert={this.alert}/>
-                 <AddCoinButton 
+                <Divider styleName='section-header'>
+                <DeleteButton alert={this.alert}/>
+                <AddCoinButton 
                     navigation={this.props.navigation} 
                     name={this.state.name}/>
+                </Divider>
             </View>
         );
     }

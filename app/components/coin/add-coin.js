@@ -69,10 +69,11 @@ export default class AddCoinComponent extends React.Component {
     }
 
     render () {
-        const filteredSearch = constants.pairs.filter(createFilter(this.state.search, KEYS))
+        let filteredSearch = constants.pairs.filter(createFilter(this.state.search, KEYS))
         return (
             <View> 
                 <TextInput
+                    value={this.state.selectedPair ? this.state.selectedPair.pair : ''}
                     placeholder={'Search for coin...'}
                     onChangeText={(text) => this.setState({search: text, selectedExchange: null})}
                     />
@@ -83,21 +84,22 @@ export default class AddCoinComponent extends React.Component {
                             renderItem={this.renderItem}
                             />
                     </ScrollView>
-                    <Text>{this.state.selectedPair ? this.state.selectedPair.name : null}</Text>
-                    {this.state.selectedPair ? <DropDownMenu
-                    styleName="horizontal"
-                    options={this.state.selectedPair.exchanges}
-                    selectedOption={this.state.selectedExchange ? this.state.selectedExchange : this.state.selectedPair.exchanges[0]}
-                    onOptionSelected={(exc) => this.setState({ selectedExchange: exc })}
-                    titleProperty="name"
-                    valueProperty="name"
-                    /> : null }
+                    {this.state.selectedPair ? 
+                        <DropDownMenu
+                        styleName="horizontal"
+                        options={this.state.selectedPair.exchanges}
+                        selectedOption={this.state.selectedExchange ? this.state.selectedExchange : this.state.selectedPair.exchanges[0]}
+                        onOptionSelected={(exc) => this.setState({ selectedExchange: exc })}
+                        titleProperty="name"
+                        valueProperty="name"
+                        /> : null }
                     <TextInput
                         placeholder={'Enter holdings...'}
                         onChangeText={(num) => this.setState({coin: {holdings: num}})}
                         />
+                    <Divider styleName='section-header' />
                     <Button onPress={() => this.save()}>
-                        <Icon name={'save'} size={16}/>
+                        <Text>Save</Text>
                     </Button>
             </View>
         )
