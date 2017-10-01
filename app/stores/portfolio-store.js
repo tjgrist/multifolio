@@ -66,7 +66,7 @@ class PortfolioStore {
     }
 
     create (portfolio) {
-        if (realm.objects('Portfolio').filtered("name = '" + portfolio.name + "'").length) return;
+        if (this.exists(portfolio)) return;
         realm.write(() => {
             portfolio.coins = portfolio.coins || []
             realm.create('Portfolio', portfolio)
@@ -74,11 +74,23 @@ class PortfolioStore {
         return 'Success!'
     }
 
+    update (portfolio) {
+        if (this.exists(portfolio)) return;
+        realm.write(() => {
+            //passing true tells realm to update that which has primary key 
+            realm.create('Portfolio', portfolio, true)
+        })
+    }
+
     delete (portfolio) {
-        if (!realm.objects('Portfolio').filtered("name = '" + portfolio.name + "'").length) return;
+        if (!this.exists(portfolio)) return;
         realm.write(() => {
             realm.delete(portfolio)
         })
+    }
+
+    exists (portfolio) {
+        return realm.objects('Portfolio').filtered("name = '" + portfolio.name + "'").length
     }
 
 }

@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import constants from '../../config/constants'
 import SearchInput, { createFilter } from 'react-native-search-filter'
 const KEYS = ['name', 'pair']
-const EXC_KEYS = ['name']
 import { 
     Divider, 
     Image, 
@@ -37,58 +36,40 @@ export default class AddCoinComponent extends React.Component {
             coin: {
                 name: '',
                 symbol: '',
-                pair: '',
+                pair: null,
                 holdings: 0,
-                exchange: '',
+                exchange: null,
                 buy: true,
                 sell: !this.buy
             }
         }
     }
 
-    renderItem = ({item}) => (
-            <TouchableOpacity onPress={() => this.onPressItem({item}) }>
-                <Divider styleName='section-header'>    
-                    <Title>{item}</Title>
-                </Divider>
-                </TouchableOpacity>
-    )
-
     onPressItem = ({item}) => {
-       this.setState({selectedPair: item.pair})
-       console.log(this.state)
+       this.setState({selectedPair: item})
     }
 
-    keyExtractor = (item, index) => item.name
-
-    renderItem = ({item}) => {
-        return (
-            <View>
-                <Button onPress={() => this.onPressItem({item}) }>
-                    <Subtitle>{item.name}</Subtitle>
-                    <Text> {item.pair}</Text>
-                </Button>
-                <Divider styleName='line' />
-            </View>
-        )
-    }
+    renderItem = ({item}) => (
+        <View>
+            <TouchableOpacity onPress={() => this.onPressItem({item}) }>
+                <Subtitle>{item.name}</Subtitle>
+                <Text> {item.pair}</Text>
+            </TouchableOpacity>
+            <Divider styleName='line' />
+        </View>
+    )                       
 
     keyExtractor = (item, index) => item.pair
 
-    getExchanges = () => {
-
+    save () {
+        //TODO validate values
+        this.state.portfolio.coins.push(this.state.coin)
+        let result = this.props.stores.portfolioStore.update(this.state.portfolio)
+        console.log(result)
     }
-    
+
     render () {
         const filteredSearch = constants.pairs.filter(createFilter(this.state.search, KEYS))
-        let filteredExchanges = [].concat.apply([], filteredSearch.map((obj) => obj.exchanges))
-        let newArr = []
-        filteredExchanges.filter((val) => {
-            let index = newArr.findIndex(x => x.name === val.name) 
-            if (index <= -1) newArr.push({name: val.name}) 
-        })
-        filteredExchanges = newArr
-        console.log(filteredExchanges, this.state.selectedExchange)
         return (
             <View> 
                 <TextInput
@@ -102,14 +83,22 @@ export default class AddCoinComponent extends React.Component {
                             renderItem={this.renderItem}
                             />
                     </ScrollView>
-                <DropDownMenu
+                    <Text>{this.state.selectedPair ? this.state.selectedPair.name : null}</Text>
+                    {this.state.selectedPair ? <DropDownMenu
                     styleName="horizontal"
-                    options={filteredExchanges}
-                    selectedOption={this.state.selectedExchange ? this.state.selectedExchange : filteredExchanges[0]}
-                    onOptionSelected={(exc) => { console.log(exc); this.setState({ selectedExchange: exc })}}
+                    options={this.state.selectedPair.exchanges}
+                    selectedOption={this.state.selectedExchange ? this.state.selectedExchange : this.state.selectedPair.exchanges[0]}
+                    onOptionSelected={(exc) => this.setState({ selectedExchange: exc })}
                     titleProperty="name"
                     valueProperty="name"
-                />
+                    /> : null }
+                    <TextInput
+                        placeholder={'Enter holdings...'}
+                        onChangeText={(num) => this.setState({coin: {holdings: num}})}
+                        />
+                    <Button onPress={() => this.save()}>
+                        <Icon name={'save'} size={16}/>
+                    </Button>
             </View>
         )
     }
