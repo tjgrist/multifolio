@@ -4,6 +4,7 @@ import { observer } from 'mobx-react/native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import constants from '../../config/constants'
 import SearchInput, { createFilter } from 'react-native-search-filter'
+import { SaveButton }  from '../shared'
 const KEYS = ['name', 'pair']
 import { 
     Divider, 
@@ -23,13 +24,11 @@ import {
 @observer
 export default class AddCoinComponent extends React.Component {
 
-
     constructor(props) {
         super(props)
         const {name} = props.navigation.state.params
         this.state = {
             search: '',
-            pair: '',
             selectedPair: null,
             selectedExchange: null,
             portfolio: this.props.stores.portfolioStore.getByName(name),
@@ -46,7 +45,7 @@ export default class AddCoinComponent extends React.Component {
     }
 
     onPressItem = ({item}) => {
-       this.setState({selectedPair: item})
+       this.setState({selectedPair: item, coin: {pair: this.state.selectedPair.pair}})
     }
 
     renderItem = ({item}) => (
@@ -98,9 +97,7 @@ export default class AddCoinComponent extends React.Component {
                         onChangeText={(num) => this.setState({coin: {holdings: num}})}
                         />
                     <Divider styleName='section-header' />
-                    <Button onPress={() => this.save()}>
-                        <Text>Save</Text>
-                    </Button>
+                    <SaveButton save={this.save}/>
             </View>
         )
     }
