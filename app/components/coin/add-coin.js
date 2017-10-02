@@ -45,7 +45,7 @@ export default class AddCoinComponent extends React.Component {
     }
 
     onPressItem = ({item}) => {
-       this.setState({selectedPair: item, coin: {pair: this.state.selectedPair.pair}})
+       this.setState({selectedPair: item})
     }
 
     renderItem = ({item}) => (
