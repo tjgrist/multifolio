@@ -51,8 +51,7 @@ export default class AddCoinComponent extends React.Component {
     renderItem = ({item}) => (
         <View>
             <TouchableOpacity onPress={() => this.onPressItem({item}) }>
-                <Subtitle>{item.name}</Subtitle>
-                <Text> {item.pair}</Text>
+                <Subtitle>{item.name}: {item.pair}</Subtitle>
             </TouchableOpacity>
             <Divider styleName='line' />
         </View>
