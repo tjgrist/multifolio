@@ -39,7 +39,7 @@ export default class AddCoinComponent extends React.Component {
                 holdings: 0,
                 exchange: null,
                 buy: true,
-                sell: !this.buy
+                sell: false
             }
         }
     }
@@ -61,6 +61,7 @@ export default class AddCoinComponent extends React.Component {
 
     save () {
         //TODO validate values
+        console.log(this.state.coin)
         this.state.portfolio.coins.push(this.state.coin)
         let result = this.props.stores.portfolioStore.update(this.state.portfolio)
         console.log(result)
@@ -71,10 +72,11 @@ export default class AddCoinComponent extends React.Component {
         return (
             <View> 
                 <TextInput
-                    value={this.state.selectedPair ? this.state.selectedPair.pair : ''}
+                    value={this.state.selectedPair ? this.state.selectedPair.pair : this.state.search}
                     placeholder={'Search for coin...'}
-                    onChangeText={(text) => this.setState({search: text, selectedExchange: null})}
+                    onChangeText={(text) => this.setState({search: text, selectedExchange: null })}
                     />
+                    <Icon name={'search'} />
                      <ScrollView>
                         <FlatList
                             data={filteredSearch}

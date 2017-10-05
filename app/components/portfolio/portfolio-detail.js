@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FlatList, Alert, View, ScrollView } from 'react-native';
 import { observer } from 'mobx-react/native'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { DeleteButton } from '../shared'
 import { 
     Divider, 
     Image, 
@@ -16,15 +17,9 @@ import {
     Footer
     } from '@shoutem/ui'
 
-const DeleteButton = (props) => (
-    <TouchableOpacity onPress={() => props.alert()}>
-    <Icon name={'trash'} size={16} />
-    </TouchableOpacity>
-)
-
 const AddCoinButton = (props) => (
     <TouchableOpacity onPress={() => props.navigation.navigate('AddCoinScreen', {name: props.name})}>
-    <Icon name={'plus'} size={16} />
+        <Icon name={'plus'} size={16} />
     </TouchableOpacity>
 )
 

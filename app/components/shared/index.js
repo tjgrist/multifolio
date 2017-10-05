@@ -4,11 +4,18 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 const SaveButton = (props) => (
     <TouchableOpacity onPress={() => props.save()}>
-        <Icon name={'save'} size={16} />
+        <Icon name={'save'} size={24} />
         <Text>Save</Text>
     </TouchableOpacity>
 )
 
+const DeleteButton = (props) => (
+    <TouchableOpacity onPress={() => props.alert()}>
+        <Icon name={'trash'} size={24} />
+    </TouchableOpacity>
+)
+
 export {
-    SaveButton
+    SaveButton,
+    DeleteButton
 }
