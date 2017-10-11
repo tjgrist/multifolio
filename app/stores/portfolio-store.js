@@ -6,7 +6,7 @@ class Portfolio {
     constructor () {}
 
     //synchronous
-    getValue() {
+    setValue() {
         let total = this.coins.map((coin) => coin.value)
             .reduce((sum, val) => sum + val, 0)
         total = +((total).toFixed(2))
@@ -51,7 +51,7 @@ class PortfolioStore {
 
     @action computePortfolios () {
         this.portfolios.forEach((p) => {
-            p.getValue()
+            p.setValue()
         })
         this.loading = false
     }
@@ -74,12 +74,17 @@ class PortfolioStore {
         return 'Success!'
     }
 
-    update (portfolio) {
-        if (this.exists(portfolio)) return;
+    update (portfolio, coin) {
+        if (!this.exists(portfolio)) return;
+        console.log('writing...')
         realm.write(() => {
+            //realm.create('Coin', coin)  
+            console.log(portfolio.coins)
+            portfolio.coins.forEach((c) => console.log(c.name))
             //passing true tells realm to update that which has primary key 
             realm.create('Portfolio', portfolio, true)
         })
+        return 'success'
     }
 
     delete (portfolio) {

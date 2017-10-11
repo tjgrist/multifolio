@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import constants from '../../config/constants'
 import SearchInput, { createFilter } from 'react-native-search-filter'
 import { SaveButton }  from '../shared'
+import uuid from 'uuid/v1'
 const KEYS = ['name', 'pair']
 import { 
     Divider, 
@@ -32,15 +33,12 @@ export default class AddCoinComponent extends React.Component {
             selectedPair: null,
             selectedExchange: null,
             portfolio: this.props.stores.portfolioStore.getByName(name),
-            coin: {
-                name: '',
-                symbol: '',
-                pair: null,
-                holdings: 0,
-                exchange: null,
-                buy: true,
-                sell: false
-            }
+            name: '',
+            symbol: '',
+            pair: null,
+            holdings: 0,
+            buy: true,
+            sell: false
         }
     }
 
@@ -61,9 +59,19 @@ export default class AddCoinComponent extends React.Component {
 
     save () {
         //TODO validate values
-        console.log(this.state.coin)
-        this.state.portfolio.coins.push(this.state.coin)
-        let result = this.props.stores.portfolioStore.update(this.state.portfolio)
+        console.log(this.state)
+        let coin = {
+            id: uuid(),
+            name: this.state.selectedPair.name,
+            symbol: this.state.selectedPair.symbol,
+            pair: this.state.selectedPair.pair,
+            exchange: this.state.selectedExchange.name,
+            holdings: this.state.holdings,
+            buy: this.state.buy,
+            sell: this.state.sell
+        }
+        console.log(coin)
+        let result = this.props.stores.portfolioStore.update(this.state.portfolio, coin)
         console.log(result)
     }
 
@@ -95,10 +103,13 @@ export default class AddCoinComponent extends React.Component {
                         /> : null }
                     <TextInput
                         placeholder={'Enter holdings...'}
-                        onChangeText={(num) => this.setState({coin: {holdings: num}})}
+                        onChangeText={(num) => this.setState({holdings: num})}
                         />
                     <Divider styleName='section-header' />
-                    <SaveButton save={this.save}/>
+                    <TouchableOpacity onPress={() => this.save()}>
+                        <Icon name={'save'} size={24} />
+                        <Text>Save</Text>
+                    </TouchableOpacity>
             </View>
         )
     }
