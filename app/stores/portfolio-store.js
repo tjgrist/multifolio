@@ -74,16 +74,15 @@ class PortfolioStore {
         return 'Success!'
     }
 
-    update (portfolio, coin) {
+    updateCoin (portfolio, coin) {
+        //TODO determine if coin already exists
         if (!this.exists(portfolio)) return;
+        let por = realm.objects('Portfolio').filtered("name = '" + portfolio.name + "'")[0]
         console.log('writing...')
         realm.write(() => {
-            //realm.create('Coin', coin)  
-            console.log(portfolio.coins)
-            portfolio.coins.forEach((c) => console.log(c.name))
-            //passing true tells realm to update that which has primary key 
-            realm.create('Portfolio', portfolio, true)
+            por.coins.push(coin)
         })
+        this.setValues()
         return 'success'
     }
 

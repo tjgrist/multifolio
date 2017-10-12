@@ -96,7 +96,7 @@ class Constants {
         },
         {
             name: 'Iota',
-            symbol: 'IOTA',
+            symbol: 'MIOTA',
             pair: 'IOTA-USD',
             exchanges: [
                 {name:'Bitfinex'},

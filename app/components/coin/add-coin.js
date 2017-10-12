@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import constants from '../../config/constants'
 import SearchInput, { createFilter } from 'react-native-search-filter'
 import { SaveButton }  from '../shared'
+import { RESET } from '../../navigation/actions'
 import uuid from 'uuid/v1'
 const KEYS = ['name', 'pair']
 import { 
@@ -59,20 +60,18 @@ export default class AddCoinComponent extends React.Component {
 
     save () {
         //TODO validate values
-        console.log(this.state)
         let coin = {
             id: uuid(),
             name: this.state.selectedPair.name,
             symbol: this.state.selectedPair.symbol,
             pair: this.state.selectedPair.pair,
-            exchange: this.state.selectedExchange.name,
             holdings: this.state.holdings,
             buy: this.state.buy,
             sell: this.state.sell
         }
         console.log(coin)
-        let result = this.props.stores.portfolioStore.update(this.state.portfolio, coin)
-        console.log(result)
+        let result = this.props.stores.portfolioStore.updateCoin(this.state.portfolio, coin)
+        if (result) this.props.navigation.dispatch(RESET)
     }
 
     render () {
@@ -92,19 +91,12 @@ export default class AddCoinComponent extends React.Component {
                             renderItem={this.renderItem}
                             />
                     </ScrollView>
-                    {this.state.selectedPair ? 
-                        <DropDownMenu
-                        styleName="horizontal"
-                        options={this.state.selectedPair.exchanges}
-                        selectedOption={this.state.selectedExchange ? this.state.selectedExchange : this.state.selectedPair.exchanges[0]}
-                        onOptionSelected={(exc) => this.setState({ selectedExchange: exc })}
-                        titleProperty="name"
-                        valueProperty="name"
-                        /> : null }
-                    <TextInput
-                        placeholder={'Enter holdings...'}
-                        onChangeText={(num) => this.setState({holdings: num})}
-                        />
+                     <TextInput
+                        placeholder={'Enter holdings'}
+                        keyboardType={'number-pad'}
+                        onChangeText={(num) => this.setState({holdings: parseFloat(num) })}
+                        editable={this.state.selectedPair? true : false}
+                    />
                     <Divider styleName='section-header' />
                     <TouchableOpacity onPress={() => this.save()}>
                         <Icon name={'save'} size={24} />

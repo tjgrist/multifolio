@@ -7,14 +7,7 @@ const cc = require('cryptocompare')
 
 class Coin {
 
-    constructor () {
-    }
-
-    @observable val = 0
-    @observable previousVal = 0
-
     @action async getValue () {
-        console.log('getValue()', this, this.symbol)
         try {
             let res = await cc.price(this.symbol, 'USD')
             let value = Object.values(res)[0]
