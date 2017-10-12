@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { FlatList, Alert, View, ScrollView } from 'react-native';
 import { observer } from 'mobx-react/native'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { DeleteButton } from '../shared'
 import { 
     Divider, 
     Image, 
