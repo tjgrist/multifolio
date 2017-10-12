@@ -4,7 +4,6 @@ import config from '../config'
 class ApiWorker {
 
   constructor () {
-
   }
 
   async computeValue (coin) {

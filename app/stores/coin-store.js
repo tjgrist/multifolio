@@ -3,40 +3,29 @@ import { create } from 'apisauce'
 import config from '../config'
 import { ApiWorker } from './api'
 import { observable, computed, action } from 'mobx'
-
+const cc = require('cryptocompare')
 
 class Coin {
 
-    constructor () {}
+    constructor () {
+    }
 
     @observable val = 0
     @observable previousVal = 0
 
     @action async getValue () {
-        if (!this.exchange) return
-        let matchUrl = config[this.exchange.toUpperCase()]
-        if (matchUrl) {
-            const api = create({
-                baseURL: matchUrl,
-                timeout: 10000
-            });
-            let route = '/' + this.pair + '/' + (this.buy ? 'buy' : 'sell') 
-            try {
-                let res = await api.get(route)
-                if (res.ok) {
-                    let total = +((res.data.data.amount * this.holdings).toFixed(2))
-                    realm.write(() => {
-                        this.value = total
-                    })
-                    this.previousVal = total
-                    this.val = total
-                    return total
-                }
-                return 'Error while fetching data'
-            }
-            catch (e) {
-                throw e
-            }
+        console.log('getValue()', this, this.symbol)
+        try {
+            let res = await cc.price(this.symbol, 'USD')
+            let value = Object.values(res)[0]
+            let total = +((value * this.holdings).toFixed(2))
+            realm.write(() => {
+                this.value = total
+            })
+            return total
+        }
+        catch (e) {
+            throw e
         }
     }
 
