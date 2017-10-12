@@ -1,13 +1,3 @@
-# Mobx React Native Template
-
-It's an experienced template for a new react native project with mobx architecture from react-native-template-mobx.
-
-这是一个有经验的 React Native 和 mobx 融合的脚手架项目.
-
-> Notice: This project has rename from `mobx-react-native-template` to `react-native-template-mobx` because of the convention of React Native Template published at React Native 0.43 version. here is the [link](https://github.com/facebook/react-native/commit/17c175a149bc410a9b167b31f13474d8c6e9832c#diff-e1bddafdbb592817072925c6b7aabcd2)
-
-> react-native-template-mobx has supported react native 0.44.
-
 ## Prepare
 
 Install Dependencies:
@@ -58,40 +48,9 @@ Done.
 
 You need start an iOS simulator or android simulator before running your app, see more: https://facebook.github.io/react-native/docs/getting-started.html
 
-
-## What it does
-
-We have developed several commercial native apps with React Native at the last year, the template is the key we can make them successfully.
-
-First, [mobx](https://github.com/mobxjs/mobx) is the key of the template. If you also love mobx, you should choose this template. with zero-configuration, you can use mobx.
-
-Second, we apply some useful react-native components for you, of course, zero configuration:
-
-* apisauce ( API provider )
-* react-native-button
-* react-native-vector-icons
-* react-navigation
-* react-native-smart-keyboard
-
-Third, we provide a nice directory construction for your new project, clean and clear.
-
-At last, we provide the most common tabbar routers example, see more detail into the directory `app/`.
-
-And we are improving the template continually.
-
 ## Mobx advantage
 
 [Mobx](https://github.com/mobxjs/mobx) is a new architecture to manage your store data. Unlike redux or flux, there's just a fewer concepts to understand and it's very simple to use.
-
-See more usage into the directory `app/`.
-
-## Some Advice
-
-Question: **How to create a new `page`**
-
-1. Add a new container component to `app/containers/`, some examples in `app/containers/` you can follow.
-2. Add a new route to `app/navigation/index.js`.
-3. Refresh your app page
 
 Question: **How to debug app**
 
@@ -123,9 +82,6 @@ Question: **How to rename my project**
 4. `react-native upgrade`
 5. `rnpm install`
 
-It's all
-
-
 ## Other useful resources
 
 1. [react layouts](https://facebook.github.io/react-native/docs/layout-props.html)
@@ -136,8 +92,3 @@ It's all
 ## Code style recommend
 
 1. Use ES7
-2. Two spaces instead of tab
-
-## Built with
-
-[80% team](https://www.80percent.io)
