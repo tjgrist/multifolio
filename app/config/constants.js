@@ -94,14 +94,14 @@ class Constants {
                 {name:'Poloniex'},
             ]
         },
-        {
-            name: 'Iota',
-            symbol: 'MIOTA',
-            pair: 'IOTA-USD',
-            exchanges: [
-                {name:'Bitfinex'},
-            ]
-        },
+        // {
+        //     name: 'Iota',
+        //     symbol: 'MIOTA',
+        //     pair: 'IOTA-USD',
+        //     exchanges: [
+        //         {name:'Bitfinex'},
+        //     ]
+        // },
         {
             name: 'Ether Classic',
             symbol: 'ETC',

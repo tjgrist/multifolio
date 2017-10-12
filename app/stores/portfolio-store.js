@@ -75,15 +75,22 @@ class PortfolioStore {
     }
 
     updateCoin (portfolio, coin) {
-        //TODO determine if coin already exists
         if (!this.exists(portfolio)) return;
         let por = realm.objects('Portfolio').filtered("name = '" + portfolio.name + "'")[0]
-        console.log('writing...')
-        realm.write(() => {
-            por.coins.push(coin)
-        })
+        let sameCoinArray = por.coins.filter((c) => c.name === coin.name)
+        if (sameCoinArray.length) {
+            console.log('same Coin!')
+            realm.write(() => {
+                if (coin.buy) sameCoinArray[0].holdings += coin.holdings
+                else sameCoinArray[0].holdings -= coin.holdings
+            })
+            }
+        else {
+            realm.write(() => {
+                por.coins.push(coin)
+            })
+        }
         this.setValues()
-        return 'success'
     }
 
     delete (portfolio) {
