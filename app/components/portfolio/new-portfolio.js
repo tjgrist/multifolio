@@ -4,6 +4,7 @@ import Button from 'react-native-button'
 import ApplicationStyles from '../../styles'
 import { observer, inject } from 'mobx-react/native'
 import { TextInput } from '@shoutem/ui'
+import { SaveButton } from '../shared'
 
 @observer
 class NewPortfolioComponent extends Component {
@@ -32,9 +33,7 @@ class NewPortfolioComponent extends Component {
           onChangeText={(name) => this.setState({name})}
         />
         <Text>{this.state.msg}</Text>
-        <Button style={ApplicationStyles.button} onPress={ ()=> { this.save() } }>
-          Save
-        </Button>
+        <SaveButton save={this.save}/>
       </View>
     );
   }

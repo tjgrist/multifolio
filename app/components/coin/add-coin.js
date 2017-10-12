@@ -70,7 +70,7 @@ export default class AddCoinComponent extends React.Component {
             sell: this.state.sell
         }
         console.log(coin)
-        this.props.stores.portfolioStore.updateCoin(this.state.portfolio, coin)
+        let result = this.props.stores.portfolioStore.updateCoin(this.state.portfolio, coin)
         this.props.navigation.dispatch(RESET)
     }
 
